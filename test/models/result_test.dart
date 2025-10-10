@@ -78,5 +78,76 @@ void main() {
         'url': testUrl,
       });
     });
+
+    test('.copyWith()', () {
+      final originalResult = TenorResult(
+        bgColor: testBgColor,
+        contentDescription: testContentDescription,
+        created: testCreated,
+        flags: testFlags,
+        hasAudio: testHasAudio,
+        hasCaption: testHasCaption,
+        id: testId,
+        itemUrl: testItemUrl,
+        media: testMedia,
+        tags: testTags,
+        title: testTitle,
+        url: testUrl,
+      );
+
+      // Test copying with no changes
+      final unchangedResult = originalResult.copyWith();
+      expect(unchangedResult.bgColor, testBgColor);
+      expect(unchangedResult.contentDescription, testContentDescription);
+      expect(unchangedResult.created, testCreated);
+      expect(unchangedResult.flags, testFlags);
+      expect(unchangedResult.hasAudio, testHasAudio);
+      expect(unchangedResult.hasCaption, testHasCaption);
+      expect(unchangedResult.id, testId);
+      expect(unchangedResult.itemUrl, testItemUrl);
+      expect(unchangedResult.media, testMedia);
+      expect(unchangedResult.tags, testTags);
+      expect(unchangedResult.title, testTitle);
+      expect(unchangedResult.url, testUrl);
+
+      // Test copying with some changes
+      final newBgColor = '#000000';
+      final newTitle = 'New Title';
+      final newTags = ['new', 'tags'];
+      final newCreated = 1633072900.0;
+      final newHasAudio = false;
+
+      final modifiedResult = originalResult.copyWith(
+        bgColor: newBgColor,
+        title: newTitle,
+        tags: newTags,
+        created: newCreated,
+        hasAudio: newHasAudio,
+      );
+
+      // Check changed fields
+      expect(modifiedResult.bgColor, newBgColor);
+      expect(modifiedResult.title, newTitle);
+      expect(modifiedResult.tags, newTags);
+      expect(modifiedResult.created, newCreated);
+      expect(modifiedResult.hasAudio, newHasAudio);
+
+      // Check unchanged fields
+      expect(modifiedResult.contentDescription, testContentDescription);
+      expect(modifiedResult.flags, testFlags);
+      expect(modifiedResult.hasCaption, testHasCaption);
+      expect(modifiedResult.id, testId);
+      expect(modifiedResult.itemUrl, testItemUrl);
+      expect(modifiedResult.media, testMedia);
+      expect(modifiedResult.url, testUrl);
+
+      // Test copying with null values (should not change the field)
+      final nullBgColorResult = originalResult.copyWith(bgColor: null);
+      expect(nullBgColorResult.bgColor, testBgColor); // Should remain unchanged
+
+      // Test that original object is not modified
+      expect(originalResult.bgColor, testBgColor);
+      expect(originalResult.title, testTitle);
+    });
   });
 }
