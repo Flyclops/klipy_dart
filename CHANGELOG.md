@@ -1,3 +1,9 @@
+## 0.0.3
+
+- feat: Added `copyWith` method to `TenorResult`.
+
+[All Code Changes](https://github.com/Flyclops/tenor_dart/compare/0.0.2...0.0.3)
+
 ## 0.0.2
 
 - chore: write tests
