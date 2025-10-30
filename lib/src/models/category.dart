@@ -25,7 +25,7 @@ class TenorCategory {
   @JsonKey(name: 'name', disallowNullValue: true)
   final String name;
 
-  TenorCategory({
+  const TenorCategory({
     required this.searchTerm,
     required this.path,
     required this.image,
@@ -41,4 +41,19 @@ class TenorCategory {
   @override
   String toString() => _encoder.convert(toJson());
   // coverage:ignore-end
+
+  /// Creates a copy of this [TenorCategory] but with the given fields replaced with the new values.
+  TenorCategory copyWith({
+    String? image,
+    String? name,
+    String? path,
+    String? searchTerm,
+  }) {
+    return TenorCategory(
+      image: image ?? this.image,
+      name: name ?? this.name,
+      path: path ?? this.path,
+      searchTerm: searchTerm ?? this.searchTerm,
+    );
+  }
 }
