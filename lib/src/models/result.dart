@@ -80,6 +80,36 @@ class TenorResult {
 
   Map<String, dynamic> toJson() => _$TenorResultToJson(this);
 
+  TenorResult copyWith({
+    double? created,
+    bool? hasAudio,
+    String? id,
+    TenorMediaFormats? media,
+    List<String>? tags,
+    String? title,
+    String? contentDescription,
+    String? itemUrl,
+    bool? hasCaption,
+    List<String>? flags,
+    String? bgColor,
+    String? url,
+  }) {
+    return TenorResult(
+      created: created ?? this.created,
+      hasAudio: hasAudio ?? this.hasAudio,
+      id: id ?? this.id,
+      media: media ?? this.media,
+      tags: tags ?? this.tags,
+      title: title ?? this.title,
+      contentDescription: contentDescription ?? this.contentDescription,
+      itemUrl: itemUrl ?? this.itemUrl,
+      hasCaption: hasCaption ?? this.hasCaption,
+      flags: flags ?? this.flags,
+      bgColor: bgColor ?? this.bgColor,
+      url: url ?? this.url,
+    );
+  }
+
   // coverage:ignore-start
   @override
   String toString() => _encoder.convert(toJson());
