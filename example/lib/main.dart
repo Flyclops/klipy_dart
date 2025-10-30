@@ -280,7 +280,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           Container(
                             width: 100,
                             height: 50,
-                            color: Colors.black.withOpacity(0.3),
+                            color: Colors.black.withValues(alpha: 0.3),
                             child: Center(
                               child: FittedBox(
                                 fit: BoxFit.fitWidth,
