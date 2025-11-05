@@ -1,3 +1,11 @@
+## 0.0.4
+
+- chore: Revert some dev dependencies so that they run on 2.17.0
+- feat: Added `source` parameter to `TenorResult` as a way to help analytics.
+
+[All Code Changes](https://github.com/Flyclops/tenor_dart/compare/0.0.3...0.0.4)
+
+
 ## 0.0.3
 
 - chore: Upgrade dependencies

@@ -10,25 +10,26 @@ part of 'result.dart';
 // **************************************************************************
 
 TenorResult _$TenorResultFromJson(Map<String, dynamic> json) => TenorResult(
+      contentDescription: json['content_description'] as String,
       created: (json['created'] as num).toDouble(),
+      flags:
+          (json['flags'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+              [],
       hasAudio: json['hasaudio'] as bool? ?? false,
+      hasCaption: json['hascaption'] as bool? ?? false,
       id: json['id'] as String,
-      media: json['media_formats'] == null
-          ? const TenorMediaFormats()
-          : TenorMediaFormats.fromJson(
-              json['media_formats'] as Map<String, dynamic>),
+      itemUrl: json['itemurl'] as String,
       tags:
           (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ??
               [],
       title: json['title'] as String,
-      contentDescription: json['content_description'] as String,
-      itemUrl: json['itemurl'] as String,
-      hasCaption: json['hascaption'] as bool? ?? false,
-      flags:
-          (json['flags'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-              [],
-      bgColor: json['bg_color'] as String?,
       url: json['url'] as String,
+      bgColor: json['bg_color'] as String?,
+      media: json['media_formats'] == null
+          ? const TenorMediaFormats()
+          : TenorMediaFormats.fromJson(
+              json['media_formats'] as Map<String, dynamic>),
+      source: json['source'] as String?,
     );
 
 Map<String, dynamic> _$TenorResultToJson(TenorResult instance) =>
@@ -45,4 +46,5 @@ Map<String, dynamic> _$TenorResultToJson(TenorResult instance) =>
       'flags': instance.flags,
       'bg_color': instance.bgColor,
       'url': instance.url,
+      'source': instance.source,
     };

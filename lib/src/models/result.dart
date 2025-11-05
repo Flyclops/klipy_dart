@@ -60,19 +60,24 @@ class TenorResult {
   @JsonKey(name: 'url')
   final String url;
 
+  /// Analytical value to track the source of where this GIF came from. For instance which Tab in a UI.
+  @JsonKey(name: 'source')
+  final String? source;
+
   TenorResult({
+    required this.contentDescription,
     required this.created,
+    required this.flags,
     required this.hasAudio,
+    required this.hasCaption,
     required this.id,
-    this.media = const TenorMediaFormats(),
+    required this.itemUrl,
     required this.tags,
     required this.title,
-    required this.contentDescription,
-    required this.itemUrl,
-    required this.hasCaption,
-    required this.flags,
-    this.bgColor,
     required this.url,
+    this.bgColor,
+    this.media = const TenorMediaFormats(),
+    this.source,
   });
 
   factory TenorResult.fromJson(Map<String, dynamic> json) =>
@@ -93,6 +98,7 @@ class TenorResult {
     List<String>? flags,
     String? bgColor,
     String? url,
+    String? source,
   }) {
     return TenorResult(
       created: created ?? this.created,
@@ -107,6 +113,7 @@ class TenorResult {
       flags: flags ?? this.flags,
       bgColor: bgColor ?? this.bgColor,
       url: url ?? this.url,
+      source: source ?? this.source,
     );
   }
 
