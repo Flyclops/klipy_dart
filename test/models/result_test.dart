@@ -14,6 +14,7 @@ void main() {
   final testTags = ['funny', 'meme'];
   final testTitle = 'Dominos Falling GIF';
   final testUrl = 'https://tenor.com/view/dominos-falling-gif-12345';
+  final testSource = 'Emojis';
 
   group('TenorResult >', () {
     test('.fromJson()', () {
@@ -30,6 +31,7 @@ void main() {
         'tags': testTags,
         'title': testTitle,
         'url': testUrl,
+        'source': testSource,
       };
       final result = TenorResult.fromJson(json);
       expect(result.bgColor, testBgColor);
@@ -44,6 +46,7 @@ void main() {
       expect(result.tags, testTags);
       expect(result.title, testTitle);
       expect(result.url, testUrl);
+      expect(result.source, testSource);
     });
 
     test('.toJson()', () {
@@ -60,6 +63,7 @@ void main() {
         tags: testTags,
         title: testTitle,
         url: testUrl,
+        source: testSource,
       );
       final json = result.toJson();
 
@@ -76,6 +80,7 @@ void main() {
         'tags': testTags,
         'title': testTitle,
         'url': testUrl,
+        'source': testSource,
       });
     });
 
@@ -109,6 +114,7 @@ void main() {
       expect(unchangedResult.tags, testTags);
       expect(unchangedResult.title, testTitle);
       expect(unchangedResult.url, testUrl);
+      expect(unchangedResult.source, null);
 
       // Test copying with some changes
       final newBgColor = '#000000';
@@ -116,6 +122,7 @@ void main() {
       final newTags = ['new', 'tags'];
       final newCreated = 1633072900.0;
       final newHasAudio = false;
+      final newSource = 'Stickers';
 
       final modifiedResult = originalResult.copyWith(
         bgColor: newBgColor,
@@ -123,6 +130,7 @@ void main() {
         tags: newTags,
         created: newCreated,
         hasAudio: newHasAudio,
+        source: newSource,
       );
 
       // Check changed fields
@@ -131,6 +139,7 @@ void main() {
       expect(modifiedResult.tags, newTags);
       expect(modifiedResult.created, newCreated);
       expect(modifiedResult.hasAudio, newHasAudio);
+      expect(modifiedResult.source, newSource);
 
       // Check unchanged fields
       expect(modifiedResult.contentDescription, testContentDescription);
