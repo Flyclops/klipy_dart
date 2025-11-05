@@ -2,7 +2,6 @@
 
 // coverage:ignore-file
 
-
 part of 'media_object_dimensions.dart';
 
 // **************************************************************************
