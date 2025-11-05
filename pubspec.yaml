@@ -1,5 +1,5 @@
 name: tenor_dart
-version: 0.0.3
+version: 0.0.4
 description: "A client for interacting with the Tenor API directly in Dart. Supports all the major endpoints such as featured (trending), search, categories, etc."
 homepage: https://github.com/flyclops
 repository: https://github.com/flyclops/tenor_dart
@@ -19,4 +19,4 @@ dev_dependencies:
   json_serializable: ^6.5.4
   lints: ^6.0.0
   mocktail: ^1.0.4
-  test: ^1.26.3
+  test: ^1.21.4
