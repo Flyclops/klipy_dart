@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:tenor_dart/src/constants/media_format.dart';
-import 'package:tenor_dart/src/models/media_object.dart';
+import 'package:klipy_dart/src/constants/media_format.dart';
+import 'package:klipy_dart/src/models/media_object.dart';
 
 part 'media_formats.g.dart';
 
@@ -10,64 +10,64 @@ part 'media_formats.g.dart';
 ///
 /// For mobile, use the nano- or tiny-sized files for previews and the tiny-sized files for shares.
 @JsonSerializable(explicitToJson: true)
-class TenorMediaFormats {
+class KlipyMediaFormats {
   static const _encoder = JsonEncoder.withIndent('  ');
 
-  @JsonKey(name: TenorMediaFormat.gif)
-  final TenorMediaObject? gif;
+  @JsonKey(name: KlipyMediaFormat.gif)
+  final KlipyMediaObject? gif;
 
-  @JsonKey(name: TenorMediaFormat.gifTransparent)
-  final TenorMediaObject? gifTransparent;
+  @JsonKey(name: KlipyMediaFormat.gifTransparent)
+  final KlipyMediaObject? gifTransparent;
 
-  @JsonKey(name: TenorMediaFormat.loopedMp4)
-  final TenorMediaObject? loopedMp4;
+  @JsonKey(name: KlipyMediaFormat.loopedMp4)
+  final KlipyMediaObject? loopedMp4;
 
-  @JsonKey(name: TenorMediaFormat.mediumGif)
-  final TenorMediaObject? mediumGif;
+  @JsonKey(name: KlipyMediaFormat.mediumGif)
+  final KlipyMediaObject? mediumGif;
 
-  @JsonKey(name: TenorMediaFormat.mp4)
-  final TenorMediaObject? mp4;
+  @JsonKey(name: KlipyMediaFormat.mp4)
+  final KlipyMediaObject? mp4;
 
-  @JsonKey(name: TenorMediaFormat.nanoGif)
-  final TenorMediaObject? nanoGif;
+  @JsonKey(name: KlipyMediaFormat.nanoGif)
+  final KlipyMediaObject? nanoGif;
 
-  @JsonKey(name: TenorMediaFormat.nanoGifTransparent)
-  final TenorMediaObject? nanoGifTransparent;
+  @JsonKey(name: KlipyMediaFormat.nanoGifTransparent)
+  final KlipyMediaObject? nanoGifTransparent;
 
-  @JsonKey(name: TenorMediaFormat.nanoMp4)
-  final TenorMediaObject? nanoMp4;
+  @JsonKey(name: KlipyMediaFormat.nanoMp4)
+  final KlipyMediaObject? nanoMp4;
 
-  @JsonKey(name: TenorMediaFormat.nanoWebm)
-  final TenorMediaObject? nanoWebm;
+  @JsonKey(name: KlipyMediaFormat.nanoWebm)
+  final KlipyMediaObject? nanoWebm;
 
-  @JsonKey(name: TenorMediaFormat.nanoWebpTransparent)
-  final TenorMediaObject? nanoWebpTransparent;
+  @JsonKey(name: KlipyMediaFormat.nanoWebpTransparent)
+  final KlipyMediaObject? nanoWebpTransparent;
 
-  @JsonKey(name: TenorMediaFormat.preview)
-  final TenorMediaObject? preview;
+  @JsonKey(name: KlipyMediaFormat.preview)
+  final KlipyMediaObject? preview;
 
-  @JsonKey(name: TenorMediaFormat.tinyGif)
-  final TenorMediaObject? tinyGif;
+  @JsonKey(name: KlipyMediaFormat.tinyGif)
+  final KlipyMediaObject? tinyGif;
 
-  @JsonKey(name: TenorMediaFormat.tinyGifTransparent)
-  final TenorMediaObject? tinyGifTransparent;
+  @JsonKey(name: KlipyMediaFormat.tinyGifTransparent)
+  final KlipyMediaObject? tinyGifTransparent;
 
-  @JsonKey(name: TenorMediaFormat.tinyMp4)
-  final TenorMediaObject? tinyMp4;
+  @JsonKey(name: KlipyMediaFormat.tinyMp4)
+  final KlipyMediaObject? tinyMp4;
 
-  @JsonKey(name: TenorMediaFormat.tinyWebm)
-  final TenorMediaObject? tinyWebm;
+  @JsonKey(name: KlipyMediaFormat.tinyWebm)
+  final KlipyMediaObject? tinyWebm;
 
-  @JsonKey(name: TenorMediaFormat.tinyWebpTransparent)
-  final TenorMediaObject? tinyWebpTransparent;
+  @JsonKey(name: KlipyMediaFormat.tinyWebpTransparent)
+  final KlipyMediaObject? tinyWebpTransparent;
 
-  @JsonKey(name: TenorMediaFormat.webm)
-  final TenorMediaObject? webm;
+  @JsonKey(name: KlipyMediaFormat.webm)
+  final KlipyMediaObject? webm;
 
-  @JsonKey(name: TenorMediaFormat.webpTransparent)
-  final TenorMediaObject? webpTransparent;
+  @JsonKey(name: KlipyMediaFormat.webpTransparent)
+  final KlipyMediaObject? webpTransparent;
 
-  const TenorMediaFormats({
+  const KlipyMediaFormats({
     this.gif,
     this.gifTransparent,
     this.loopedMp4,
@@ -88,10 +88,10 @@ class TenorMediaFormats {
     this.webpTransparent,
   });
 
-  factory TenorMediaFormats.fromJson(Map<String, dynamic> json) =>
-      _$TenorMediaFormatsFromJson(json);
+  factory KlipyMediaFormats.fromJson(Map<String, dynamic> json) =>
+      _$KlipyMediaFormatsFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TenorMediaFormatsToJson(this);
+  Map<String, dynamic> toJson() => _$KlipyMediaFormatsToJson(this);
 
   // coverage:ignore-start
   @override

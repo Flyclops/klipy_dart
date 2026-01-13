@@ -2,18 +2,19 @@
 
 // coverage:ignore-file
 
-part of 'category.dart';
+
+part of 'category_object.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-TenorCategory _$TenorCategoryFromJson(Map<String, dynamic> json) {
+KlipyCategoryObject _$KlipyCategoryObjectFromJson(Map<String, dynamic> json) {
   $checkKeys(
     json,
     disallowNullValues: const ['searchterm', 'path', 'image', 'name'],
   );
-  return TenorCategory(
+  return KlipyCategoryObject(
     searchTerm: json['searchterm'] as String,
     path: json['path'] as String,
     image: json['image'] as String,
@@ -21,7 +22,8 @@ TenorCategory _$TenorCategoryFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$TenorCategoryToJson(TenorCategory instance) =>
+Map<String, dynamic> _$KlipyCategoryObjectToJson(
+        KlipyCategoryObject instance) =>
     <String, dynamic>{
       'searchterm': instance.searchTerm,
       'path': instance.path,

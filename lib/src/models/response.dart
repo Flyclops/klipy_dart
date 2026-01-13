@@ -1,25 +1,22 @@
 import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:tenor_dart/src/constants/constants.dart';
-import 'package:tenor_dart/src/models/models.dart';
-import 'package:tenor_dart/src/http_client.dart';
+import 'package:klipy_dart/src/constants/constants.dart';
+import 'package:klipy_dart/src/models/models.dart';
+import 'package:klipy_dart/src/http_client.dart';
 
 part 'response.g.dart';
 
 /// Based on [category response object](https://developers.google.com/tenor/guides/response-objects-and-errors#category-object) from the Tenor API.
 @JsonSerializable(explicitToJson: true)
-class TenorResponse {
+class KlipyResponse {
   static const _encoder = JsonEncoder.withIndent('  ');
 
   @JsonKey(name: 'results')
-  final List<TenorResult> results;
+  final List<KlipyResultsObject> results;
 
   @JsonKey(name: 'aspect_ratio_range')
   final TenorAspectRatioRange aspectRatioRange;
-
-  @JsonKey(name: 'content_filter')
-  final TenorContentFilter contentFilter;
 
   @JsonKey(name: 'endpoint')
   final TenorEndpoint? endpoint;
@@ -36,33 +33,31 @@ class TenorResponse {
   @JsonKey(name: 'timeout')
   final Duration timeout;
 
-  TenorResponse({
+  KlipyResponse({
     required this.results,
     this.aspectRatioRange = TenorAspectRatioRange.all,
-    this.contentFilter = TenorContentFilter.off,
     this.endpoint,
-    this.mediaFilter = const [TenorMediaFormat.tinyGif],
+    this.mediaFilter = const [KlipyMediaFormat.tinyGif],
     this.next,
     this.parameters,
     this.timeout = const Duration(seconds: 5),
   });
 
-  factory TenorResponse.fromJson(Map<String, dynamic> json) =>
-      _$TenorResponseFromJson(json);
+  factory KlipyResponse.fromJson(Map<String, dynamic> json) =>
+      _$KlipyResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TenorResponseToJson(this);
+  Map<String, dynamic> toJson() => _$KlipyResponseToJson(this);
 
   // TODO look into sticker and random on fetchNext
-  Future<TenorResponse?> fetchNext({
+  Future<KlipyResponse?> fetchNext({
     int limit = 1,
-    TenorHttpClient httpClient = const TenorHttpClient(),
+    KlipyHttpClient httpClient = const KlipyHttpClient(),
   }) {
     return httpClient.getGifs(
       endpoint!,
       timeout,
       parameters!,
       aspectRatioRange: aspectRatioRange,
-      contentFilter: contentFilter,
       limit: limit,
       mediaFilter: mediaFilter,
       pos: next,

@@ -1,4 +1,4 @@
-import 'package:tenor_dart/tenor_dart.dart';
+import 'package:klipy_dart/klipy_dart.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -10,13 +10,13 @@ void main() {
   final testHasCaption = true;
   final testId = '12345';
   final testItemUrl = 'https://tenor.com/view/dominos-falling-gif-12345';
-  final testMedia = TenorMediaFormats();
+  final testMedia = KlipyMediaFormats();
   final testTags = ['funny', 'meme'];
   final testTitle = 'Dominos Falling GIF';
   final testUrl = 'https://tenor.com/view/dominos-falling-gif-12345';
   final testSource = 'Emojis';
 
-  group('TenorResult >', () {
+  group('KlipyResultsObject >', () {
     test('.fromJson()', () {
       final json = {
         'bg_color': testBgColor,
@@ -33,7 +33,7 @@ void main() {
         'url': testUrl,
         'source': testSource,
       };
-      final result = TenorResult.fromJson(json);
+      final result = KlipyResultsObject.fromJson(json);
       expect(result.bgColor, testBgColor);
       expect(result.contentDescription, testContentDescription);
       expect(result.created, testCreated);
@@ -50,7 +50,7 @@ void main() {
     });
 
     test('.toJson()', () {
-      final result = TenorResult(
+      final result = KlipyResultsObject(
         bgColor: testBgColor,
         contentDescription: testContentDescription,
         created: testCreated,
@@ -85,7 +85,7 @@ void main() {
     });
 
     test('.copyWith()', () {
-      final originalResult = TenorResult(
+      final originalResult = KlipyResultsObject(
         bgColor: testBgColor,
         contentDescription: testContentDescription,
         created: testCreated,

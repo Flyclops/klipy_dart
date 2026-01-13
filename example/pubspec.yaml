@@ -1,5 +1,5 @@
-name: tenor_dart_example
-description: "An example of how to use Tenor Dart"
+name: klipy_dart_example
+description: "An example of how to use Klipy Dart"
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0
 
@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_config: ^2.0.2
-  tenor_dart:
+  klipy_dart:
     path: ../
   cupertino_icons: ^1.0.2
 

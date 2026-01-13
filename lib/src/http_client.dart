@@ -2,15 +2,15 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:tenor_dart/tenor_dart.dart';
+import 'package:klipy_dart/klipy_dart.dart';
 
 /// A class for handling requests to HTTP.
 ///
 /// Needed as a class so it is easier to test/mock.
-class TenorHttpClient {
+class KlipyHttpClient {
   final http.Client? client;
 
-  const TenorHttpClient([
+  const KlipyHttpClient([
     this.client,
   ]);
 
@@ -20,9 +20,8 @@ class TenorHttpClient {
 // https://developers.google.com/tenor/guides/response-objects-and-errors
   Future<Map<String, dynamic>> request(String url, Duration timeout) async {
     try {
-      print(tenorApiUrl + url);
       final response =
-          await _client.get(Uri.parse(tenorApiUrl + url)).timeout(timeout);
+          await _client.get(Uri.parse(klipyApiUrl + url)).timeout(timeout);
       // get json
       final Map<String, dynamic> json = jsonDecode(response.body);
 
@@ -56,12 +55,11 @@ class TenorHttpClient {
   }
 
   /// Shared functionality between Search and Featured endpoints.
-  Future<TenorResponse?> getGifs(
+  Future<KlipyResponse?> getGifs(
     TenorEndpoint endPoint,
     Duration timeout,
     String parameters, {
     int limit = 1,
-    TenorContentFilter? contentFilter,
     TenorAspectRatioRange? aspectRatioRange,
     List<String>? mediaFilter,
     String? pos,
@@ -79,9 +77,6 @@ class TenorHttpClient {
     // if (random) {
     //   path += '&random=$random';
     // }
-    if (contentFilter != null) {
-      path += '&contentfilter=${contentFilter.name}';
-    }
     if (mediaFilter != null) {
       path += '&media_filter=${mediaFilter.join(',')}';
     }
@@ -93,9 +88,9 @@ class TenorHttpClient {
     }
 
     var data = await request(path, timeout);
-    TenorResponse? res;
+    KlipyResponse? res;
     if (data.isNotEmpty) {
-      res = TenorResponse.fromJson(
+      res = KlipyResponse.fromJson(
         {
           ...data,
           'endpoint': endPoint.name,

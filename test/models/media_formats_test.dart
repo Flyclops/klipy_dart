@@ -1,4 +1,4 @@
-import 'package:tenor_dart/tenor_dart.dart';
+import 'package:klipy_dart/klipy_dart.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -131,27 +131,27 @@ void main() {
   group('MediaFormats >', () {
     test('.fromJson()', () {
       final json = {
-        TenorMediaFormat.gif: testGif,
-        TenorMediaFormat.gifTransparent: testGifTransparent,
-        TenorMediaFormat.loopedMp4: testLoopedMp4,
-        TenorMediaFormat.mediumGif: testMediumGif,
-        TenorMediaFormat.mp4: testMp4,
-        TenorMediaFormat.nanoGif: testNanoGif,
-        TenorMediaFormat.nanoGifTransparent: testNanoGifTransparent,
-        TenorMediaFormat.nanoMp4: testNanoMp4,
-        TenorMediaFormat.nanoWebm: testNanoWebm,
-        TenorMediaFormat.nanoWebpTransparent: testNanoWebpTransparent,
-        TenorMediaFormat.preview: testPreview,
-        TenorMediaFormat.tinyGif: testTinyGif,
-        TenorMediaFormat.tinyGifTransparent: testTinyGifTransparent,
-        TenorMediaFormat.tinyMp4: testTinyMp4,
-        TenorMediaFormat.tinyWebm: testTinyWebm,
-        TenorMediaFormat.tinyWebpTransparent: testTinyWebpTransparent,
-        TenorMediaFormat.webm: testWebm,
-        TenorMediaFormat.webpTransparent: testWebpTransparent,
+        KlipyMediaFormat.gif: testGif,
+        KlipyMediaFormat.gifTransparent: testGifTransparent,
+        KlipyMediaFormat.loopedMp4: testLoopedMp4,
+        KlipyMediaFormat.mediumGif: testMediumGif,
+        KlipyMediaFormat.mp4: testMp4,
+        KlipyMediaFormat.nanoGif: testNanoGif,
+        KlipyMediaFormat.nanoGifTransparent: testNanoGifTransparent,
+        KlipyMediaFormat.nanoMp4: testNanoMp4,
+        KlipyMediaFormat.nanoWebm: testNanoWebm,
+        KlipyMediaFormat.nanoWebpTransparent: testNanoWebpTransparent,
+        KlipyMediaFormat.preview: testPreview,
+        KlipyMediaFormat.tinyGif: testTinyGif,
+        KlipyMediaFormat.tinyGifTransparent: testTinyGifTransparent,
+        KlipyMediaFormat.tinyMp4: testTinyMp4,
+        KlipyMediaFormat.tinyWebm: testTinyWebm,
+        KlipyMediaFormat.tinyWebpTransparent: testTinyWebpTransparent,
+        KlipyMediaFormat.webm: testWebm,
+        KlipyMediaFormat.webpTransparent: testWebpTransparent,
       };
 
-      final mediaFormats = TenorMediaFormats.fromJson(json);
+      final mediaFormats = KlipyMediaFormats.fromJson(json);
       expect(mediaFormats.gif?.toJson(), testGif);
       expect(mediaFormats.gifTransparent?.toJson(), testGifTransparent);
       expect(mediaFormats.loopedMp4?.toJson(), testLoopedMp4);
@@ -179,46 +179,46 @@ void main() {
     });
 
     test('.toJson()', () {
-      final mediaFormats = TenorMediaFormats(
-        gif: TenorMediaObject.fromJson(testGif),
-        gifTransparent: TenorMediaObject.fromJson(testGifTransparent),
-        loopedMp4: TenorMediaObject.fromJson(testLoopedMp4),
-        mediumGif: TenorMediaObject.fromJson(testMediumGif),
-        mp4: TenorMediaObject.fromJson(testMp4),
-        nanoGif: TenorMediaObject.fromJson(testNanoGif),
-        nanoGifTransparent: TenorMediaObject.fromJson(testNanoGifTransparent),
-        nanoMp4: TenorMediaObject.fromJson(testNanoMp4),
-        nanoWebm: TenorMediaObject.fromJson(testNanoWebm),
-        nanoWebpTransparent: TenorMediaObject.fromJson(testNanoWebpTransparent),
-        preview: TenorMediaObject.fromJson(testPreview),
-        tinyGif: TenorMediaObject.fromJson(testTinyGif),
-        tinyGifTransparent: TenorMediaObject.fromJson(testTinyGifTransparent),
-        tinyMp4: TenorMediaObject.fromJson(testTinyMp4),
-        tinyWebm: TenorMediaObject.fromJson(testTinyWebm),
-        tinyWebpTransparent: TenorMediaObject.fromJson(testTinyWebpTransparent),
-        webm: TenorMediaObject.fromJson(testWebm),
-        webpTransparent: TenorMediaObject.fromJson(testWebpTransparent),
+      final mediaFormats = KlipyMediaFormats(
+        gif: KlipyMediaObject.fromJson(testGif),
+        gifTransparent: KlipyMediaObject.fromJson(testGifTransparent),
+        loopedMp4: KlipyMediaObject.fromJson(testLoopedMp4),
+        mediumGif: KlipyMediaObject.fromJson(testMediumGif),
+        mp4: KlipyMediaObject.fromJson(testMp4),
+        nanoGif: KlipyMediaObject.fromJson(testNanoGif),
+        nanoGifTransparent: KlipyMediaObject.fromJson(testNanoGifTransparent),
+        nanoMp4: KlipyMediaObject.fromJson(testNanoMp4),
+        nanoWebm: KlipyMediaObject.fromJson(testNanoWebm),
+        nanoWebpTransparent: KlipyMediaObject.fromJson(testNanoWebpTransparent),
+        preview: KlipyMediaObject.fromJson(testPreview),
+        tinyGif: KlipyMediaObject.fromJson(testTinyGif),
+        tinyGifTransparent: KlipyMediaObject.fromJson(testTinyGifTransparent),
+        tinyMp4: KlipyMediaObject.fromJson(testTinyMp4),
+        tinyWebm: KlipyMediaObject.fromJson(testTinyWebm),
+        tinyWebpTransparent: KlipyMediaObject.fromJson(testTinyWebpTransparent),
+        webm: KlipyMediaObject.fromJson(testWebm),
+        webpTransparent: KlipyMediaObject.fromJson(testWebpTransparent),
       );
       final json = mediaFormats.toJson();
       expect(json, {
-        TenorMediaFormat.gif: testGif,
-        TenorMediaFormat.gifTransparent: testGifTransparent,
-        TenorMediaFormat.loopedMp4: testLoopedMp4,
-        TenorMediaFormat.mediumGif: testMediumGif,
-        TenorMediaFormat.mp4: testMp4,
-        TenorMediaFormat.nanoGif: testNanoGif,
-        TenorMediaFormat.nanoGifTransparent: testNanoGifTransparent,
-        TenorMediaFormat.nanoMp4: testNanoMp4,
-        TenorMediaFormat.nanoWebm: testNanoWebm,
-        TenorMediaFormat.nanoWebpTransparent: testNanoWebpTransparent,
-        TenorMediaFormat.preview: testPreview,
-        TenorMediaFormat.tinyGif: testTinyGif,
-        TenorMediaFormat.tinyGifTransparent: testTinyGifTransparent,
-        TenorMediaFormat.tinyMp4: testTinyMp4,
-        TenorMediaFormat.tinyWebm: testTinyWebm,
-        TenorMediaFormat.tinyWebpTransparent: testTinyWebpTransparent,
-        TenorMediaFormat.webm: testWebm,
-        TenorMediaFormat.webpTransparent: testWebpTransparent,
+        KlipyMediaFormat.gif: testGif,
+        KlipyMediaFormat.gifTransparent: testGifTransparent,
+        KlipyMediaFormat.loopedMp4: testLoopedMp4,
+        KlipyMediaFormat.mediumGif: testMediumGif,
+        KlipyMediaFormat.mp4: testMp4,
+        KlipyMediaFormat.nanoGif: testNanoGif,
+        KlipyMediaFormat.nanoGifTransparent: testNanoGifTransparent,
+        KlipyMediaFormat.nanoMp4: testNanoMp4,
+        KlipyMediaFormat.nanoWebm: testNanoWebm,
+        KlipyMediaFormat.nanoWebpTransparent: testNanoWebpTransparent,
+        KlipyMediaFormat.preview: testPreview,
+        KlipyMediaFormat.tinyGif: testTinyGif,
+        KlipyMediaFormat.tinyGifTransparent: testTinyGifTransparent,
+        KlipyMediaFormat.tinyMp4: testTinyMp4,
+        KlipyMediaFormat.tinyWebm: testTinyWebm,
+        KlipyMediaFormat.tinyWebpTransparent: testTinyWebpTransparent,
+        KlipyMediaFormat.webm: testWebm,
+        KlipyMediaFormat.webpTransparent: testWebpTransparent,
       });
     });
   });

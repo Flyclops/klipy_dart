@@ -1,13 +1,13 @@
 import 'package:mocktail/mocktail.dart';
-import 'package:tenor_dart/tenor_dart.dart';
+import 'package:klipy_dart/klipy_dart.dart';
 import 'package:test/test.dart';
 
 import 'mocks/mocks.dart';
 
 void main() {
   group('Tenor >', () {
-    final mockTenorHttpClient = MockTenorHttpClient();
-    final tenorClient = Tenor(apiKey: '12345', client: mockTenorHttpClient);
+    final mockKlipyHttpClient = MockKlipyHttpClient();
+    final tenorClient = Tenor(apiKey: '12345', client: mockKlipyHttpClient);
 
     setUpAll(() {
       registerFallbackValue(TenorEndpoint.featured);
@@ -15,7 +15,7 @@ void main() {
     });
 
     tearDown(() {
-      reset(mockTenorHttpClient);
+      reset(mockKlipyHttpClient);
     });
 
     test('Make sure it is the right type', () {
@@ -24,18 +24,17 @@ void main() {
     group('.featured() >', () {
       test('should call getGifs', () async {
         when(
-          () => mockTenorHttpClient.getGifs(
+          () => mockKlipyHttpClient.getGifs(
             any(),
             any(),
             any(),
             aspectRatioRange: any(named: 'aspectRatioRange'),
-            contentFilter: any(named: 'contentFilter'),
             limit: any(named: 'limit'),
             mediaFilter: any(named: 'mediaFilter'),
             sticker: any(named: 'sticker'),
           ),
         ).thenAnswer((_) async {
-          return TenorResponse(
+          return KlipyResponse(
             results: [],
           );
         });
@@ -43,12 +42,11 @@ void main() {
         final test = await tenorClient.featured();
 
         verify(
-          () => mockTenorHttpClient.getGifs(
+          () => mockKlipyHttpClient.getGifs(
             any(),
             any(),
             any(),
             aspectRatioRange: any(named: 'aspectRatioRange'),
-            contentFilter: any(named: 'contentFilter'),
             limit: any(named: 'limit'),
             mediaFilter: any(named: 'mediaFilter'),
             sticker: any(named: 'sticker'),
@@ -65,29 +63,27 @@ void main() {
       });
       test('should call getGifs', () async {
         when(
-          () => mockTenorHttpClient.getGifs(
+          () => mockKlipyHttpClient.getGifs(
             any(),
             any(),
             any(),
             aspectRatioRange: any(named: 'aspectRatioRange'),
-            contentFilter: any(named: 'contentFilter'),
             limit: any(named: 'limit'),
             mediaFilter: any(named: 'mediaFilter'),
             sticker: any(named: 'sticker'),
           ),
         ).thenAnswer((_) async {
-          return TenorResponse(results: []);
+          return KlipyResponse(results: []);
         });
 
         final test = await tenorClient.search('domino');
 
         verify(
-          () => mockTenorHttpClient.getGifs(
+          () => mockKlipyHttpClient.getGifs(
             any(),
             any(),
             any(),
             aspectRatioRange: any(named: 'aspectRatioRange'),
-            contentFilter: any(named: 'contentFilter'),
             limit: any(named: 'limit'),
             mediaFilter: any(named: 'mediaFilter'),
             sticker: any(named: 'sticker'),
@@ -105,7 +101,7 @@ void main() {
       test('should call request - success', () async {
         final testSuggestions = ['domino is fun', 'domino is cool'];
         when(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -118,7 +114,7 @@ void main() {
         final response = await tenorClient.searchSuggestions('domino');
 
         verify(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -129,7 +125,7 @@ void main() {
       test('should call request - success', () async {
         final testSuggestions = ['domino is fun', 'domino is cool'];
         when(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -142,7 +138,7 @@ void main() {
         final response = await tenorClient.searchSuggestions('domino');
 
         verify(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -152,7 +148,7 @@ void main() {
       });
       test('should call request - results null', () async {
         when(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -165,7 +161,7 @@ void main() {
         final response = await tenorClient.searchSuggestions('domino');
 
         verify(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -176,7 +172,7 @@ void main() {
 
       test('should call request - results empty', () async {
         when(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -187,7 +183,7 @@ void main() {
         final response = await tenorClient.searchSuggestions('domino');
 
         verify(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -200,7 +196,7 @@ void main() {
       test('should call request - success', () async {
         final testTrendingTerms = ['domino is fun', 'domino is cool'];
         when(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -213,7 +209,7 @@ void main() {
         final response = await tenorClient.trendingSearchTerms();
 
         verify(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -223,7 +219,7 @@ void main() {
       });
       test('should call request - results null', () async {
         when(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -236,7 +232,7 @@ void main() {
         final response = await tenorClient.trendingSearchTerms();
 
         verify(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -246,7 +242,7 @@ void main() {
       });
       test('should call request - results empty', () async {
         when(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -257,7 +253,7 @@ void main() {
         final response = await tenorClient.trendingSearchTerms();
 
         verify(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -274,7 +270,7 @@ void main() {
       test('should call request - success', () async {
         final testAutocomplete = ['domino'];
         when(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -287,7 +283,7 @@ void main() {
         final response = await tenorClient.autocomplete('dom');
 
         verify(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -297,7 +293,7 @@ void main() {
       });
       test('should call request - results null', () async {
         when(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -310,7 +306,7 @@ void main() {
         final response = await tenorClient.autocomplete('dom');
 
         verify(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -320,7 +316,7 @@ void main() {
       });
       test('should call request - results empty', () async {
         when(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -331,7 +327,7 @@ void main() {
         final response = await tenorClient.autocomplete('dom');
 
         verify(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -343,7 +339,7 @@ void main() {
     group('.categories() >', () {
       test('should call request - success', () async {
         when(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -363,7 +359,7 @@ void main() {
         final response = await tenorClient.categories();
 
         verify(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -376,7 +372,7 @@ void main() {
       });
       test('should call request - results null', () async {
         when(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -389,7 +385,7 @@ void main() {
         final response = await tenorClient.categories();
 
         verify(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -399,7 +395,7 @@ void main() {
       });
       test('should call request - results empty', () async {
         when(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -410,7 +406,7 @@ void main() {
         final response = await tenorClient.categories();
 
         verify(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -422,7 +418,7 @@ void main() {
     group('.registerShare() >', () {
       test('should call request - success', () async {
         when(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -435,7 +431,7 @@ void main() {
         final response = await tenorClient.registerShare('1234');
 
         verify(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -445,7 +441,7 @@ void main() {
       });
       test('should call request - results null', () async {
         when(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -458,7 +454,7 @@ void main() {
         final response = await tenorClient.registerShare('1234');
 
         verify(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -468,7 +464,7 @@ void main() {
       });
       test('should call request - results empty', () async {
         when(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -479,7 +475,7 @@ void main() {
         final response = await tenorClient.registerShare('1234');
 
         verify(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -491,14 +487,14 @@ void main() {
     group('.posts() >', () {
       test('should call request - success', () async {
         when(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
         ).thenAnswer((_) async {
           return {
             'results': [
-              TenorResult(
+              KlipyResultsObject(
                 created: DateTime.now().millisecondsSinceEpoch.toDouble(),
                 hasAudio: false,
                 id: '1234',
@@ -517,7 +513,7 @@ void main() {
         final response = await tenorClient.posts(ids: ['1234']);
 
         verify(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -527,7 +523,7 @@ void main() {
       });
       test('should call request - results null', () async {
         when(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -540,7 +536,7 @@ void main() {
         final response = await tenorClient.posts(ids: ['1234']);
 
         verify(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -550,7 +546,7 @@ void main() {
       });
       test('should call request - results empty', () async {
         when(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),
@@ -561,7 +557,7 @@ void main() {
         final response = await tenorClient.posts(ids: ['1234']);
 
         verify(
-          () => mockTenorHttpClient.request(
+          () => mockKlipyHttpClient.request(
             any(),
             any(),
           ),

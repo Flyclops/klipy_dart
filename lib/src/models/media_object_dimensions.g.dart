@@ -2,25 +2,26 @@
 
 // coverage:ignore-file
 
+
 part of 'media_object_dimensions.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-TenorMediaObjectDimensions _$TenorMediaObjectDimensionsFromJson(
+KlipyMediaObjectDimensions _$KlipyMediaObjectDimensionsFromJson(
     Map<String, dynamic> json) {
   $checkKeys(
     json,
     requiredKeys: const ['dims'],
   );
-  return TenorMediaObjectDimensions(
+  return KlipyMediaObjectDimensions(
     (json['dims'] as List<dynamic>).map((e) => (e as num).toInt()).toList(),
   );
 }
 
-Map<String, dynamic> _$TenorMediaObjectDimensionsToJson(
-        TenorMediaObjectDimensions instance) =>
+Map<String, dynamic> _$KlipyMediaObjectDimensionsToJson(
+        KlipyMediaObjectDimensions instance) =>
     <String, dynamic>{
       'dims': instance._dimensions,
     };

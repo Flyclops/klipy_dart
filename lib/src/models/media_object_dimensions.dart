@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'media_object_dimensions.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class TenorMediaObjectDimensions {
+class KlipyMediaObjectDimensions {
   @JsonKey(
     name: 'dims',
     required: true,
@@ -20,7 +20,7 @@ class TenorMediaObjectDimensions {
   @JsonKey(includeFromJson: false, includeToJson: false)
   late final double aspectRatio;
 
-  TenorMediaObjectDimensions(this._dimensions) {
+  KlipyMediaObjectDimensions(this._dimensions) {
     if (_dimensions.length != 2) {
       throw ArgumentError.value(
         _dimensions,
@@ -34,14 +34,14 @@ class TenorMediaObjectDimensions {
     aspectRatio = width / height;
   }
 
-  factory TenorMediaObjectDimensions.fromJson(Map<String, dynamic> json) =>
-      _$TenorMediaObjectDimensionsFromJson(json);
+  factory KlipyMediaObjectDimensions.fromJson(Map<String, dynamic> json) =>
+      _$KlipyMediaObjectDimensionsFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TenorMediaObjectDimensionsToJson(this);
+  Map<String, dynamic> toJson() => _$KlipyMediaObjectDimensionsToJson(this);
 
   // coverage:ignore-start
   @override
   String toString() =>
-      'TenorMediaObjectDimensions(width: $width, height: $height, aspectRatio: $aspectRatio)';
+      'KlipyMediaObjectDimensions(width: $width, height: $height, aspectRatio: $aspectRatio)';
   // coverage:ignore-end
 }

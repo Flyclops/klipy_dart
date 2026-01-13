@@ -1,11 +1,13 @@
-name: tenor_dart
-version: 0.0.4
-description: "A client for interacting with the Tenor API directly in Dart. Supports all the major endpoints such as featured (trending), search, categories, etc."
+name: klipy_dart
+version: 0.0.1
+description: "A client for interacting with the KLIPY API directly in Dart. Supports all the major endpoints such as featured (trending), search, categories, etc."
 homepage: https://github.com/flyclops
-repository: https://github.com/flyclops/tenor_dart
+repository: https://github.com/flyclops/klipy_dart
 topics:
   - gif
+  - klipy
   - tenor
+  - giphy
 
 environment:
   sdk: ">=2.17.0 <4.0.0"

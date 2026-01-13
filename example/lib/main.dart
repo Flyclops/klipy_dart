@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:tenor_dart/tenor_dart.dart';
 import 'package:flutter_config/flutter_config.dart';
+import 'package:flutter/material.dart';
+import 'package:klipy_dart/klipy_dart.dart';
 
 void main() async {
   // only used to load api key from .env file, not required
@@ -34,14 +34,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<TenorResult> searchResults = [];
-  List<TenorResult> featuredResults = [];
-  List<TenorResult> postsResults = [];
-  List<TenorCategory?> categoryResults = [];
+  List<KlipyResultsObject> searchResults = [];
+  List<KlipyResultsObject> featuredResults = [];
+  List<KlipyResultsObject> postsResults = [];
+  List<KlipyCategoryObject?> categoryResults = [];
   List<String?> autocompleteResults = [];
   List<String?> trendingSearchTermsResults = [];
   List<String?> searchSuggestionsResults = [];
-  TenorResult? randomGif;
+  KlipyResultsObject? randomGif;
 
   @override
   void initState() {
@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ///
     /// Search GIFs for "domino" keyword
     ///
-    final searchResponse = await tenorClient.search('domino game', limit: 5);
+    final searchResponse = await tenorClient.search('domino', limit: 5);
     if (searchResponse?.results.isNotEmpty ?? false) {
       setState(() {
         searchResults = searchResponse!.results;

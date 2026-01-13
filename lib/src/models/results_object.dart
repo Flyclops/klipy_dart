@@ -1,36 +1,36 @@
 import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:tenor_dart/src/models/media_formats.dart';
+import 'package:klipy_dart/src/models/media_formats.dart';
 
-part 'result.g.dart';
+part 'results_object.g.dart';
 
-/// Based on [category response object](https://developers.google.com/tenor/guides/response-objects-and-errors#category-object) from the Tenor API.
+/// Based on [response object](https://docs.klipy.com/migrate-from-tenor/response-objects/response-object) from the Klipy API.
 @JsonSerializable(explicitToJson: true)
-class TenorResult {
+class KlipyResultsObject {
   static const _encoder = JsonEncoder.withIndent('  ');
 
   /// A Unix timestamp that represents when this post was created.
   @JsonKey(name: 'created')
   final double created;
 
-  /// eturns true if this post contains audio.
+  /// eturns `true` if this post contains audio.
   @JsonKey(name: 'hasaudio', defaultValue: false)
   final bool hasAudio;
 
-  /// Tenor result identifier
+  /// KLIPY result identifier.
   @JsonKey(name: 'id')
   final String id;
 
-  /// A dictionary with a [content format](https://developers.google.com/tenor/guides/response-objects-and-errors#content-formats) as the key and a [Media Object](https://developers.google.com/tenor/guides/response-objects-and-errors#media-object) as the value.
+  /// A dictionary with a [content format](https://docs.klipy.com/migrate-from-tenor/response-objects/content-formats) as the key and a [Media Object](https://docs.klipy.com/migrate-from-tenor/response-objects/media-object) as the value.
   @JsonKey(name: 'media_formats')
-  final TenorMediaFormats media;
+  final KlipyMediaFormats media;
 
-  /// An array of tags for the post
+  /// An array of tags for the post.
   @JsonKey(name: 'tags', defaultValue: [])
   final List<String> tags;
 
-  /// The title of the post
+  /// The title of the post.
   @JsonKey(name: 'title')
   final String title;
 
@@ -38,25 +38,23 @@ class TenorResult {
   @JsonKey(name: 'content_description')
   final String contentDescription;
 
-  /// The full URL to view the post on [tenor.com](http://tenor.com/).
+  /// The full URL to view the post on [Klipy.com](https://klipy.com/).
   @JsonKey(name: 'itemurl')
   final String itemUrl;
 
-  /// Returns true if this post contains captions.
+  /// Returns `true` if this post contains captions.
   @JsonKey(name: 'hascaption', defaultValue: false)
   final bool hasCaption;
 
-  /// Comma-separated list to signify whether the content is a sticker or static image, has audio, or is any combination of these.
-  ///
-  /// If sticker and static aren't present, then the content is a GIF. A blank flags field signifies a GIF without audio.
+  /// Comma-separated list to signify whether the content is a sticker or static image, has audio, or is any combination of these. If `sticker` and `static` aren't present, then the content is a GIF. A blank `flags` field signifies a GIF without audio.
   @JsonKey(name: 'flags', defaultValue: [])
   final List<String> flags;
 
-  /// The most common background pixel color of the content
+  /// The most common background pixel color of the content.
   @JsonKey(name: 'bg_color')
   final String? bgColor;
 
-  /// A short URL to view the post on [tenor.com](http://tenor.com/).
+  /// A short URL to view the post on [Klipy.com](https://klipy.com/).
   @JsonKey(name: 'url')
   final String url;
 
@@ -64,7 +62,7 @@ class TenorResult {
   @JsonKey(name: 'source')
   final String? source;
 
-  TenorResult({
+  KlipyResultsObject({
     required this.contentDescription,
     required this.created,
     required this.flags,
@@ -76,20 +74,20 @@ class TenorResult {
     required this.title,
     required this.url,
     this.bgColor,
-    this.media = const TenorMediaFormats(),
+    this.media = const KlipyMediaFormats(),
     this.source,
   });
 
-  factory TenorResult.fromJson(Map<String, dynamic> json) =>
-      _$TenorResultFromJson(json);
+  factory KlipyResultsObject.fromJson(Map<String, dynamic> json) =>
+      _$KlipyResultsObjectFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TenorResultToJson(this);
+  Map<String, dynamic> toJson() => _$KlipyResultsObjectToJson(this);
 
-  TenorResult copyWith({
+  KlipyResultsObject copyWith({
     double? created,
     bool? hasAudio,
     String? id,
-    TenorMediaFormats? media,
+    KlipyMediaFormats? media,
     List<String>? tags,
     String? title,
     String? contentDescription,
@@ -100,7 +98,7 @@ class TenorResult {
     String? url,
     String? source,
   }) {
-    return TenorResult(
+    return KlipyResultsObject(
       created: created ?? this.created,
       hasAudio: hasAudio ?? this.hasAudio,
       id: id ?? this.id,

@@ -1,17 +1,14 @@
-import 'package:tenor_dart/src/constants/constants.dart';
-import 'package:tenor_dart/src/http_client.dart';
-import 'package:tenor_dart/src/models/category.dart';
-import 'package:tenor_dart/src/models/response.dart';
-import 'package:tenor_dart/src/models/result.dart';
-import 'package:tenor_dart/src/utilities/utilities.dart';
+import 'package:klipy_dart/src/constants/constants.dart';
+import 'package:klipy_dart/src/http_client.dart';
+import 'package:klipy_dart/src/models/category_object.dart';
+import 'package:klipy_dart/src/models/response.dart';
+import 'package:klipy_dart/src/models/results_object.dart';
+import 'package:klipy_dart/src/utilities/utilities.dart';
 
 /// A client to interact with the [Tenor API v2](https://developers.google.com/tenor/guides/quickstart).
 class Tenor {
   /// Your API key provided by [Tenor](https://developers.google.com/tenor/guides/quickstart).
   final String apiKey;
-
-  /// Specify the [content safety filter](https://developers.google.com/tenor/guides/content-filtering) level.
-  final TenorContentFilter contentFilter;
 
   /// Specify the country of origin for the request. To do so, provide its two-letter [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes) country code. **Format:** YY
   final String country;
@@ -31,11 +28,10 @@ class Tenor {
   final Duration networkTimeout;
 
   /// Mostly used for testing purposes.
-  final TenorHttpClient? client;
+  final KlipyHttpClient? client;
 
   const Tenor({
     required this.apiKey,
-    this.contentFilter = TenorContentFilter.off,
     this.country = 'US',
     this.locale = 'en_US',
     this.networkTimeout = const Duration(seconds: 5),
@@ -43,7 +39,7 @@ class Tenor {
   });
 
   // Shortcut for getting which client to use
-  TenorHttpClient get _client => client ?? TenorHttpClient();
+  KlipyHttpClient get _client => client ?? KlipyHttpClient();
 
   /// Get a JSON object that contains a list of the current global featured GIFs. Tenor updates the featured stream regularly throughout the day.
   ///
@@ -51,12 +47,12 @@ class Tenor {
   ///
   ///```dart
   /// var tenorClient = Tenor(apiKey: 'YOUR_KEY');
-  /// TenorResponse? response = await tenorClient.featured(limit: 5);
+  /// KlipyResponse? response = await tenorClient.featured(limit: 5);
   ///```
-  Future<TenorResponse?> featured({
+  Future<KlipyResponse?> featured({
     int limit = 20,
     TenorAspectRatioRange aspectRatioRange = TenorAspectRatioRange.all,
-    List<String> mediaFilter = const [TenorMediaFormat.tinyGif],
+    List<String> mediaFilter = const [KlipyMediaFormat.tinyGif],
     bool sticker = false,
     String? pos,
   }) async {
@@ -70,7 +66,6 @@ class Tenor {
       TenorEndpoint.featured,
       networkTimeout,
       parameters,
-      contentFilter: contentFilter,
       limit: limit,
       mediaFilter: mediaFilter,
       pos: pos,
@@ -88,13 +83,13 @@ class Tenor {
   ///
   ///```dart
   /// var tenorClient = Tenor(apiKey: 'YOUR_KEY');
-  /// TenorResponse? res = await tenorClient.search('universe', limit: 5);
+  /// KlipyResponse? res = await tenorClient.search('universe', limit: 5);
   ///```
-  Future<TenorResponse?> search(
+  Future<KlipyResponse?> search(
     String search, {
     int limit = 20,
     TenorAspectRatioRange aspectRatioRange = TenorAspectRatioRange.all,
-    List<String> mediaFilter = const [TenorMediaFormat.tinyGif],
+    List<String> mediaFilter = const [KlipyMediaFormat.tinyGif],
     String? pos,
     bool sticker = false,
     bool random = false,
@@ -113,7 +108,6 @@ class Tenor {
       networkTimeout,
       parameters,
       limit: limit,
-      contentFilter: contentFilter,
       aspectRatioRange: aspectRatioRange,
       mediaFilter: mediaFilter,
       pos: pos,
@@ -218,18 +212,18 @@ class Tenor {
     return List.from(response['results']);
   }
 
-  /// Returns a `List<TenorCategory>` of GIF categories associated with the provided `TenorCategoryType`.
+  /// Returns a `List<KlipyCategoryObject>` of GIF categories associated with the provided `KlipyCategoryType`.
   ///
-  /// Each `TenorCategory` includes a corresponding `path` to use if the user clicks on the category. The `path` includes any parameters from the original call to the Categories TenorEndpoint.
+  /// Each `KlipyCategory` includes a corresponding `path` to use if the user clicks on the category. The `path` includes any parameters from the original call to the Categories TenorEndpoint.
   ///
   /// Documentation: https://developers.google.com/tenor/guides/endpoints#categories
   ///
   ///```dart
   /// var tenorClient = Tenor(apiKey: 'YOUR_KEY');
-  /// List<TenorCategory> categories = await tenorClient.requestCategories();
+  /// List<KlipyCategoryObject> categories = await tenorClient.requestCategories();
   ///```
-  Future<List<TenorCategory>> categories({
-    TenorCategoryType categoryType = TenorCategoryType.featured,
+  Future<List<KlipyCategoryObject>> categories({
+    KlipyCategoryType categoryType = KlipyCategoryType.featured,
   }) async {
     // setup path
     var path = TenorEndpoint.categories.name.withQueryParams({
@@ -237,16 +231,15 @@ class Tenor {
       'country': country,
       'locale': locale,
       'type': categoryType.name,
-      'contentfilter': contentFilter.name,
     });
     // ask for data
     var data = await _client.request(path, networkTimeout);
     // form list of categories
-    var list = <TenorCategory>[];
+    var list = <KlipyCategoryObject>[];
 
     if (data['tags'] != null) {
       data['tags'].forEach((tag) {
-        list.add(TenorCategory.fromJson(tag));
+        list.add(KlipyCategoryObject.fromJson(tag));
       });
     }
     return list;
@@ -258,7 +251,7 @@ class Tenor {
   ///
   ///```dart
   /// var tenorClient = Tenor(apiKey: 'YOUR_KEY');
-  /// List<TenorCategory> categories = await tenorClient.registerShare('12345');
+  /// bool wasShared = await tenorClient.registerShare('12345');
   ///```
   Future<bool> registerShare(
     /// The id of a Response Object
@@ -289,11 +282,11 @@ class Tenor {
   ///
   ///```dart
   /// var tenorClient = Tenor(apiKey: 'YOUR_KEY');
-  /// List<TenorResults> posts = await tenorClient.posts(ids: ['3526696', '25055384']);
+  /// List<KlipyResultsObject> posts = await tenorClient.posts(ids: ['3526696', '25055384']);
   ///```
-  Future<List<TenorResult>> posts({
+  Future<List<KlipyResultsObject>> posts({
     required List<String> ids,
-    List<String> mediaFilter = const [TenorMediaFormat.tinyGif],
+    List<String> mediaFilter = const [KlipyMediaFormat.tinyGif],
   }) async {
     // setup path
     var path = TenorEndpoint.posts.name.withQueryParams({
@@ -304,10 +297,10 @@ class Tenor {
     // ask for data
     var data = await _client.request(path, networkTimeout);
     // form list of categories
-    var list = <TenorResult>[];
+    var list = <KlipyResultsObject>[];
     if (data['results'] != null) {
       data['results'].forEach((post) {
-        list.add(TenorResult.fromJson(post));
+        list.add(KlipyResultsObject.fromJson(post));
       });
     }
     return list;

@@ -1,4 +1,4 @@
-import 'package:tenor_dart/tenor_dart.dart';
+import 'package:klipy_dart/klipy_dart.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -16,7 +16,7 @@ void main() {
         'path': testPath,
         'searchterm': testSearchTerm,
       };
-      final category = TenorCategory.fromJson(json);
+      final category = KlipyCategoryObject.fromJson(json);
       expect(category.image, testImage);
       expect(category.name, testName);
       expect(category.path, testPath);
@@ -24,7 +24,7 @@ void main() {
     });
 
     test('.toJson()', () {
-      final category = TenorCategory(
+      final category = KlipyCategoryObject(
         image: testImage,
         name: testName,
         path: testPath,

@@ -2,13 +2,15 @@
 
 // coverage:ignore-file
 
-part of 'result.dart';
+
+part of 'results_object.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-TenorResult _$TenorResultFromJson(Map<String, dynamic> json) => TenorResult(
+KlipyResultsObject _$KlipyResultsObjectFromJson(Map<String, dynamic> json) =>
+    KlipyResultsObject(
       contentDescription: json['content_description'] as String,
       created: (json['created'] as num).toDouble(),
       flags:
@@ -25,13 +27,13 @@ TenorResult _$TenorResultFromJson(Map<String, dynamic> json) => TenorResult(
       url: json['url'] as String,
       bgColor: json['bg_color'] as String?,
       media: json['media_formats'] == null
-          ? const TenorMediaFormats()
-          : TenorMediaFormats.fromJson(
+          ? const KlipyMediaFormats()
+          : KlipyMediaFormats.fromJson(
               json['media_formats'] as Map<String, dynamic>),
       source: json['source'] as String?,
     );
 
-Map<String, dynamic> _$TenorResultToJson(TenorResult instance) =>
+Map<String, dynamic> _$KlipyResultsObjectToJson(KlipyResultsObject instance) =>
     <String, dynamic>{
       'created': instance.created,
       'hasaudio': instance.hasAudio,
