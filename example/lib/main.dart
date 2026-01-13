@@ -16,11 +16,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Klipy Dart Example',
+      title: 'KLIPY Dart Example',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Klipy Dart Example'),
+      home: const MyHomePage(title: 'KLIPY Dart Example'),
     );
   }
 }

@@ -1,4 +1,4 @@
-# Klipy Dart
+# KLIPY Dart
 
 <p align="center">
   <a href="https://pub.dartlang.org/packages/klipy_dart"><img src="https://img.shields.io/pub/v/klipy_dart.svg" alt="KLIPY Dart Pub Package" /></a>
@@ -8,7 +8,7 @@
   <a href="https://github.com/Flyclops/klipy_dart/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-BSD_3--Clause-blue.svg" alt="License BSD 3-Clause" /></a>
 </p>
 
-This package integrates [KLIPY GIF search](https://klipy.com) into [Dart](https://dart.dev/) by utilizing the [http](https://pub.dev/packages/http) package to communicate directly with the [KLIPY API](https://docs.klipy.com/getting-started). We are currently using the [migration from Tenor](https://docs.klipy.com/migrate-from-tenor) option but plan to build this package out to be feature completed with the KLIPY API. 
+This package integrates [KLIPY GIF search](https://klipy.com) into [Dart](https://dart.dev/) by utilizing the [http](https://pub.dev/packages/http) package to communicate directly with the [KLIPY API](https://docs.klipy.com/getting-started). We are currently using the [migration from Tenor](https://docs.klipy.com/migrate-from-tenor) option but plan to build this package out to be feature complete with the KLIPY API. 
 
 Currently supported endpoints include: [search](https://docs.klipy.com/migrate-from-tenor/search), [featured](https://docs.klipy.com/migrate-from-tenor/features), [categories](https://docs.klipy.com/migrate-from-tenor/categories), [search suggestions](https://docs.klipy.com/migrate-from-tenor/search-suggestions), [autocomplete](https://docs.klipy.com/migrate-from-tenor/autocomplete), [trending search terms](https://docs.klipy.com/migrate-from-tenor/trending-search-terms), [register share](https://docs.klipy.com/migrate-from-tenor/register-share) and [posts](https://docs.klipy.com/migrate-from-tenor/posts).
 
@@ -23,7 +23,7 @@ Currently supported endpoints include: [search](https://docs.klipy.com/migrate-f
 
 ## Obtaining KLIPY API key
 
-1. Log in to the [partner dashboard](https://partner.klipy.com)
+1. Log in to the [partner panel](https://partner.klipy.com)
 2. Add a [new platform](https://partner.klipy.com/api-keys)
 3. Click `Create Key`
 4. Copy the generated API key
