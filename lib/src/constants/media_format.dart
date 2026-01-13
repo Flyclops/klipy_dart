@@ -1,4 +1,4 @@
-/// The Klipy API provides five base media formats in various sizes:
+/// The KLIPY API provides five base media formats in various sizes:
 ///  - GIF: Plays on a continuous loop.
 ///  - MP4 & WebM: Plays the clip once (except loopedmp4 , which repeats several times).
 ///  - Transparent WebP & Transparent GIF: Exclusively for sticker content; these are not available in GIF search results.

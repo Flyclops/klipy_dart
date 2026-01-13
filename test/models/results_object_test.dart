@@ -9,11 +9,13 @@ void main() {
   final testHasAudio = true;
   final testHasCaption = true;
   final testId = '12345';
-  final testItemUrl = 'https://tenor.com/view/dominos-falling-gif-12345';
+  final testItemUrl =
+      'https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/18/ce/u2T4lKAV.gif';
   final testMedia = KlipyMediaFormats();
   final testTags = ['funny', 'meme'];
   final testTitle = 'Dominos Falling GIF';
-  final testUrl = 'https://tenor.com/view/dominos-falling-gif-12345';
+  final testUrl =
+      'https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/18/ce/u2T4lKAV.gif';
   final testSource = 'Emojis';
 
   group('KlipyResultsObject >', () {

@@ -5,12 +5,13 @@ import 'package:test/test.dart';
 import 'mocks/mocks.dart';
 
 void main() {
-  group('Tenor >', () {
+  group('KlipyClient >', () {
     final mockKlipyHttpClient = MockKlipyHttpClient();
-    final tenorClient = Tenor(apiKey: '12345', client: mockKlipyHttpClient);
+    final klipyClient =
+        KlipyClient(apiKey: '12345', client: mockKlipyHttpClient);
 
     setUpAll(() {
-      registerFallbackValue(TenorEndpoint.featured);
+      registerFallbackValue(KlipyEndpoint.featured);
       registerFallbackValue(Duration.zero);
     });
 
@@ -19,7 +20,7 @@ void main() {
     });
 
     test('Make sure it is the right type', () {
-      expect(tenorClient, isA<Tenor>());
+      expect(klipyClient, isA<KlipyClient>());
     });
     group('.featured() >', () {
       test('should call getGifs', () async {
@@ -39,7 +40,7 @@ void main() {
           );
         });
 
-        final test = await tenorClient.featured();
+        final test = await klipyClient.featured();
 
         verify(
           () => mockKlipyHttpClient.getGifs(
@@ -58,7 +59,7 @@ void main() {
     });
     group('.search() >', () {
       test('should return null if provided an empty string', () async {
-        final response = await tenorClient.search('  ');
+        final response = await klipyClient.search('  ');
         expect(response, isNull);
       });
       test('should call getGifs', () async {
@@ -76,7 +77,7 @@ void main() {
           return KlipyResponse(results: []);
         });
 
-        final test = await tenorClient.search('domino');
+        final test = await klipyClient.search('domino');
 
         verify(
           () => mockKlipyHttpClient.getGifs(
@@ -95,7 +96,7 @@ void main() {
     });
     group('.searchSuggestions() >', () {
       test('should return an empty list if search is empty', () async {
-        final response = await tenorClient.searchSuggestions('  ');
+        final response = await klipyClient.searchSuggestions('  ');
         expect(response, []);
       });
       test('should call request - success', () async {
@@ -111,7 +112,7 @@ void main() {
           };
         });
 
-        final response = await tenorClient.searchSuggestions('domino');
+        final response = await klipyClient.searchSuggestions('domino');
 
         verify(
           () => mockKlipyHttpClient.request(
@@ -135,7 +136,7 @@ void main() {
           };
         });
 
-        final response = await tenorClient.searchSuggestions('domino');
+        final response = await klipyClient.searchSuggestions('domino');
 
         verify(
           () => mockKlipyHttpClient.request(
@@ -158,7 +159,7 @@ void main() {
           };
         });
 
-        final response = await tenorClient.searchSuggestions('domino');
+        final response = await klipyClient.searchSuggestions('domino');
 
         verify(
           () => mockKlipyHttpClient.request(
@@ -180,7 +181,7 @@ void main() {
           return {};
         });
 
-        final response = await tenorClient.searchSuggestions('domino');
+        final response = await klipyClient.searchSuggestions('domino');
 
         verify(
           () => mockKlipyHttpClient.request(
@@ -206,7 +207,7 @@ void main() {
           };
         });
 
-        final response = await tenorClient.trendingSearchTerms();
+        final response = await klipyClient.trendingSearchTerms();
 
         verify(
           () => mockKlipyHttpClient.request(
@@ -229,7 +230,7 @@ void main() {
           };
         });
 
-        final response = await tenorClient.trendingSearchTerms();
+        final response = await klipyClient.trendingSearchTerms();
 
         verify(
           () => mockKlipyHttpClient.request(
@@ -250,7 +251,7 @@ void main() {
           return {};
         });
 
-        final response = await tenorClient.trendingSearchTerms();
+        final response = await klipyClient.trendingSearchTerms();
 
         verify(
           () => mockKlipyHttpClient.request(
@@ -264,7 +265,7 @@ void main() {
     });
     group('.autocomplete() >', () {
       test('should return an empty list if provided an empty string', () async {
-        final response = await tenorClient.autocomplete('  ');
+        final response = await klipyClient.autocomplete('  ');
         expect(response, []);
       });
       test('should call request - success', () async {
@@ -280,7 +281,7 @@ void main() {
           };
         });
 
-        final response = await tenorClient.autocomplete('dom');
+        final response = await klipyClient.autocomplete('dom');
 
         verify(
           () => mockKlipyHttpClient.request(
@@ -303,7 +304,7 @@ void main() {
           };
         });
 
-        final response = await tenorClient.autocomplete('dom');
+        final response = await klipyClient.autocomplete('dom');
 
         verify(
           () => mockKlipyHttpClient.request(
@@ -324,7 +325,7 @@ void main() {
           return {};
         });
 
-        final response = await tenorClient.autocomplete('dom');
+        final response = await klipyClient.autocomplete('dom');
 
         verify(
           () => mockKlipyHttpClient.request(
@@ -356,7 +357,7 @@ void main() {
           };
         });
 
-        final response = await tenorClient.categories();
+        final response = await klipyClient.categories();
 
         verify(
           () => mockKlipyHttpClient.request(
@@ -382,7 +383,7 @@ void main() {
           };
         });
 
-        final response = await tenorClient.categories();
+        final response = await klipyClient.categories();
 
         verify(
           () => mockKlipyHttpClient.request(
@@ -403,7 +404,7 @@ void main() {
           return {};
         });
 
-        final response = await tenorClient.categories();
+        final response = await klipyClient.categories();
 
         verify(
           () => mockKlipyHttpClient.request(
@@ -428,7 +429,7 @@ void main() {
           };
         });
 
-        final response = await tenorClient.registerShare('1234');
+        final response = await klipyClient.registerShare('1234');
 
         verify(
           () => mockKlipyHttpClient.request(
@@ -451,7 +452,7 @@ void main() {
           };
         });
 
-        final response = await tenorClient.registerShare('1234');
+        final response = await klipyClient.registerShare('1234');
 
         verify(
           () => mockKlipyHttpClient.request(
@@ -472,7 +473,7 @@ void main() {
           return {};
         });
 
-        final response = await tenorClient.registerShare('1234');
+        final response = await klipyClient.registerShare('1234');
 
         verify(
           () => mockKlipyHttpClient.request(
@@ -510,7 +511,7 @@ void main() {
           };
         });
 
-        final response = await tenorClient.posts(ids: ['1234']);
+        final response = await klipyClient.posts(ids: ['1234']);
 
         verify(
           () => mockKlipyHttpClient.request(
@@ -533,7 +534,7 @@ void main() {
           };
         });
 
-        final response = await tenorClient.posts(ids: ['1234']);
+        final response = await klipyClient.posts(ids: ['1234']);
 
         verify(
           () => mockKlipyHttpClient.request(
@@ -554,7 +555,7 @@ void main() {
           return {};
         });
 
-        final response = await tenorClient.posts(ids: ['1234']);
+        final response = await klipyClient.posts(ids: ['1234']);
 
         verify(
           () => mockKlipyHttpClient.request(

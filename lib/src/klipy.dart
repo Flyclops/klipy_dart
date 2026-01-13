@@ -5,9 +5,9 @@ import 'package:klipy_dart/src/models/response.dart';
 import 'package:klipy_dart/src/models/results_object.dart';
 import 'package:klipy_dart/src/utilities/utilities.dart';
 
-/// A client to interact with the [Tenor API v2](https://developers.google.com/tenor/guides/quickstart).
-class Tenor {
-  /// Your API key provided by [Tenor](https://developers.google.com/tenor/guides/quickstart).
+/// A client to interact with the [KLIPY API](https://docs.klipy.com/migrate-from-tenor).
+class KlipyClient {
+  /// Your API key provided by [KLIPY](https://docs.klipy.com/getting-started).
   final String apiKey;
 
   /// Specify the country of origin for the request. To do so, provide its two-letter [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes) country code. **Format:** YY
@@ -30,7 +30,7 @@ class Tenor {
   /// Mostly used for testing purposes.
   final KlipyHttpClient? client;
 
-  const Tenor({
+  const KlipyClient({
     required this.apiKey,
     this.country = 'US',
     this.locale = 'en_US',
@@ -41,17 +41,17 @@ class Tenor {
   // Shortcut for getting which client to use
   KlipyHttpClient get _client => client ?? KlipyHttpClient();
 
-  /// Get a JSON object that contains a list of the current global featured GIFs. Tenor updates the featured stream regularly throughout the day.
+  /// Returns a `KlipyResponse` of current global featured GIFs, updated regularly throughout the day.
   ///
-  /// Documentation: https://developers.google.com/tenor/guides/endpoints#featured
+  /// Documentation: https://docs.klipy.com/migrate-from-tenor/features
   ///
   ///```dart
-  /// var tenorClient = Tenor(apiKey: 'YOUR_KEY');
-  /// KlipyResponse? response = await tenorClient.featured(limit: 5);
+  /// var klipyClient = KlipyClient(apiKey: 'YOUR_KEY');
+  /// KlipyResponse? response = await klipyClient.featured(limit: 5);
   ///```
   Future<KlipyResponse?> featured({
     int limit = 20,
-    TenorAspectRatioRange aspectRatioRange = TenorAspectRatioRange.all,
+    KlipyAspectRatioRange aspectRatioRange = KlipyAspectRatioRange.all,
     List<String> mediaFilter = const [KlipyMediaFormat.tinyGif],
     bool sticker = false,
     String? pos,
@@ -63,7 +63,7 @@ class Tenor {
       'locale': locale,
     });
     return await _client.getGifs(
-      TenorEndpoint.featured,
+      KlipyEndpoint.featured,
       networkTimeout,
       parameters,
       limit: limit,
@@ -73,22 +73,18 @@ class Tenor {
     );
   }
 
-  /// Get a JSON object that contains a list of the most relevant GIFs for a given set of search terms, categories, emojis, or any combination of these.
+  /// Returns a `KlipyResponse` containing the most relevant GIFs based on your specific search terms, categories, or emoji inputs. You can use any combination of these filters.
   ///
-  /// When you include the URL parameter searchfilter=sticker in the request, Tenor's search endpoint returns stickers rather than GIFs. The Response Objects in sticker search responses include transparent formats under the media_formats field.
-  ///
-  /// To return the results in a randomized order, instead of them being ordered by relevance, include the URL parameter random=true.
-  ///
-  /// Documentation: https://developers.google.com/tenor/guides/endpoints#search
+  /// Documentation: https://docs.klipy.com/migrate-from-tenor/search
   ///
   ///```dart
-  /// var tenorClient = Tenor(apiKey: 'YOUR_KEY');
-  /// KlipyResponse? res = await tenorClient.search('universe', limit: 5);
+  /// var klipyClient = KlipyClient(apiKey: 'YOUR_KEY');
+  /// KlipyResponse? res = await klipyClient.search('universe', limit: 5);
   ///```
   Future<KlipyResponse?> search(
     String search, {
     int limit = 20,
-    TenorAspectRatioRange aspectRatioRange = TenorAspectRatioRange.all,
+    KlipyAspectRatioRange aspectRatioRange = KlipyAspectRatioRange.all,
     List<String> mediaFilter = const [KlipyMediaFormat.tinyGif],
     String? pos,
     bool sticker = false,
@@ -104,7 +100,7 @@ class Tenor {
       'locale': locale,
     });
     return await _client.getGifs(
-      TenorEndpoint.search,
+      KlipyEndpoint.search,
       networkTimeout,
       parameters,
       limit: limit,
@@ -116,15 +112,15 @@ class Tenor {
     );
   }
 
-  /// Search suggestions help a user narrow their search or discover related search terms to find a more precise GIF.
+  /// Returns a `List<String>` of alternative search terms related to the user's search.
   ///
-  /// The API returns results in order of what is most likely to drive a share for a given term, based on historic user search and share behavior.
+  /// Suggestions are ordered by their likelihood to drive a share, based on historical search and share behavior.
   ///
-  /// Documentation: https://developers.google.com/tenor/guides/endpoints#search-suggestions
+  /// Documentation: https://docs.klipy.com/migrate-from-tenor/search-suggestions
   ///
   /// ```dart
-  /// var tenorClient = Tenor(apiKey: 'YOUR_KEY');
-  /// List<String> suggestions = await tenorClient.searchSuggestions('laugh', limit: 5);
+  /// var klipyClient = KlipyClient(apiKey: 'YOUR_KEY');
+  /// List<String> suggestions = await klipyClient.searchSuggestions('laugh', limit: 5);
   /// ```
   Future<List<String>> searchSuggestions(
     String search, {
@@ -133,7 +129,7 @@ class Tenor {
     // search can't be empty
     if (search.trim().isEmpty) return [];
     // setup path
-    var path = TenorEndpoint.search_suggestions.name.withQueryParams({
+    var path = KlipyEndpoint.search_suggestions.name.withQueryParams({
       'key': apiKey,
       'q': search,
       'country': country,
@@ -150,19 +146,19 @@ class Tenor {
     return List.from(response['results']);
   }
 
-  /// Returns a `List<String>` of the current trending search terms. Tenor's AI updates the list hourly.
+  /// Returns a `List<String>` containing the current trending search terms.
   ///
-  /// Documentation: https://developers.google.com/tenor/guides/endpoints#trending-search
+  /// Documentation: https://docs.klipy.com/migrate-from-tenor/trending-search-terms
   ///
   /// ```dart
-  /// var tenorClient = Tenor(apiKey: 'YOUR_KEY');
-  /// List<String> trendingSearchTerms = await tenorClient.trendingSearchTerms(limit: 5);
+  /// var klipyClient = KlipyClient(apiKey: 'YOUR_KEY');
+  /// List<String> trendingSearchTerms = await klipyClient.trendingSearchTerms(limit: 5);
   ///```
   Future<List<String>> trendingSearchTerms({
     int limit = 20,
   }) async {
     // setup path
-    var path = TenorEndpoint.trending_terms.name.withQueryParams({
+    var path = KlipyEndpoint.trending_terms.name.withQueryParams({
       'key': apiKey,
       'country': country,
       'locale': locale,
@@ -180,13 +176,11 @@ class Tenor {
 
   /// Get a `List<String>` of completed search terms for a given partial search term.
   ///
-  /// The list is sorted by Tenor's AI and the number of results decreases as Tenor's AI becomes more certain.
-  ///
-  /// Documentation: https://developers.google.com/tenor/guides/endpoints#autocomplete
+  /// Documentation: https://docs.klipy.com/migrate-from-tenor/autocomplete
   ///
   /// ```dart
-  /// var tenorClient = Tenor(apiKey: 'YOUR_KEY');
-  /// List<String> autocompleteItems = await tenorClient.autocomplete('pro', limit: 5);
+  /// var klipyClient = KlipyClient(apiKey: 'YOUR_KEY');
+  /// List<String> autocompleteItems = await klipyClient.autocomplete('pro', limit: 5);
   ///```
   Future<List<String>> autocomplete(
     String search, {
@@ -195,7 +189,7 @@ class Tenor {
     // search can't be empty
     if (search.trim().isEmpty) return [];
     // setup path
-    var path = TenorEndpoint.autocomplete.name.withQueryParams({
+    var path = KlipyEndpoint.autocomplete.name.withQueryParams({
       'key': apiKey,
       'q': search,
       'country': country,
@@ -212,21 +206,21 @@ class Tenor {
     return List.from(response['results']);
   }
 
-  /// Returns a `List<KlipyCategoryObject>` of GIF categories associated with the provided `KlipyCategoryType`.
+  /// Returns a `List<KlipyCategoryObject>` of GIF categories based on the specified type. Each category includes a search URL that preserves the parameters from the original request.
   ///
-  /// Each `KlipyCategory` includes a corresponding `path` to use if the user clicks on the category. The `path` includes any parameters from the original call to the Categories TenorEndpoint.
+  /// Each `KlipyCategory` includes a corresponding `path` to use if the user clicks on the category. The `path` includes any parameters from the original call to the Categories KlipyEndpoint.
   ///
-  /// Documentation: https://developers.google.com/tenor/guides/endpoints#categories
+  /// Documentation: https://docs.klipy.com/migrate-from-tenor/categories
   ///
   ///```dart
-  /// var tenorClient = Tenor(apiKey: 'YOUR_KEY');
-  /// List<KlipyCategoryObject> categories = await tenorClient.requestCategories();
+  /// var klipyClient = KlipyClient(apiKey: 'YOUR_KEY');
+  /// List<KlipyCategoryObject> categories = await klipyClient.requestCategories();
   ///```
   Future<List<KlipyCategoryObject>> categories({
     KlipyCategoryType categoryType = KlipyCategoryType.featured,
   }) async {
     // setup path
-    var path = TenorEndpoint.categories.name.withQueryParams({
+    var path = KlipyEndpoint.categories.name.withQueryParams({
       'key': apiKey,
       'country': country,
       'locale': locale,
@@ -245,13 +239,13 @@ class Tenor {
     return list;
   }
 
-  /// Register a user's sharing of a GIF or sticker.
+  /// This endpoint registers when a user shares a GIF or sticker.
   ///
-  /// Documentation: https://developers.google.com/tenor/guides/endpoints#register-share
+  /// Documentation: https://docs.klipy.com/migrate-from-tenor/register-share
   ///
   ///```dart
-  /// var tenorClient = Tenor(apiKey: 'YOUR_KEY');
-  /// bool wasShared = await tenorClient.registerShare('12345');
+  /// var klipyClient = KlipyClient(apiKey: 'YOUR_KEY');
+  /// bool wasShared = await klipyClient.registerShare('12345');
   ///```
   Future<bool> registerShare(
     /// The id of a Response Object
@@ -260,7 +254,7 @@ class Tenor {
     String? search,
   }) async {
     // setup path
-    var path = TenorEndpoint.registershare.name.withQueryParams({
+    var path = KlipyEndpoint.registershare.name.withQueryParams({
       'key': apiKey,
       'id': id,
       'country': country,
@@ -276,20 +270,20 @@ class Tenor {
     return false;
   }
 
-  /// Get the GIFs, stickers, or a combination of the two for the specified IDs.
+  /// Retrieve specific GIFs, stickers, or a combination of both by providing their IDs.
   ///
-  /// Documentation: https://developers.google.com/tenor/guides/endpoints#posts
+  /// Documentation: https://docs.klipy.com/migrate-from-tenor/posts
   ///
   ///```dart
-  /// var tenorClient = Tenor(apiKey: 'YOUR_KEY');
-  /// List<KlipyResultsObject> posts = await tenorClient.posts(ids: ['3526696', '25055384']);
+  /// var klipyClient = KlipyClient(apiKey: 'YOUR_KEY');
+  /// List<KlipyResultsObject> posts = await klipyClient.posts(ids: ['3526696', '25055384']);
   ///```
   Future<List<KlipyResultsObject>> posts({
     required List<String> ids,
     List<String> mediaFilter = const [KlipyMediaFormat.tinyGif],
   }) async {
     // setup path
-    var path = TenorEndpoint.posts.name.withQueryParams({
+    var path = KlipyEndpoint.posts.name.withQueryParams({
       'key': apiKey,
       'ids': ids.join(','),
       'media_filter': mediaFilter.join(','),

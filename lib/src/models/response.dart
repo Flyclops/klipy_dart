@@ -16,10 +16,10 @@ class KlipyResponse {
   final List<KlipyResultsObject> results;
 
   @JsonKey(name: 'aspect_ratio_range')
-  final TenorAspectRatioRange aspectRatioRange;
+  final KlipyAspectRatioRange aspectRatioRange;
 
   @JsonKey(name: 'endpoint')
-  final TenorEndpoint? endpoint;
+  final KlipyEndpoint? endpoint;
 
   @JsonKey(name: 'media_filter')
   final List<String>? mediaFilter;
@@ -35,7 +35,7 @@ class KlipyResponse {
 
   KlipyResponse({
     required this.results,
-    this.aspectRatioRange = TenorAspectRatioRange.all,
+    this.aspectRatioRange = KlipyAspectRatioRange.all,
     this.endpoint,
     this.mediaFilter = const [KlipyMediaFormat.tinyGif],
     this.next,

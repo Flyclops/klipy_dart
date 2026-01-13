@@ -16,8 +16,6 @@ class KlipyHttpClient {
 
   http.Client get _client => client ?? http.Client();
 
-// Errors will return error in the body.
-// https://developers.google.com/tenor/guides/response-objects-and-errors
   Future<Map<String, dynamic>> request(String url, Duration timeout) async {
     try {
       final response =
@@ -28,10 +26,9 @@ class KlipyHttpClient {
       // if an error is present, throw it
       if (json['error'] != null ||
           (response.statusCode != 200 && response.statusCode != 202)) {
-        print(response.body);
-        throw TenorApiException(
+        throw KlipyApiException(
           code: response.statusCode,
-          message: json['error']?['message'],
+          message: json['errors'].toString(),
         );
       }
       // if no error, return the json for consumption
@@ -41,10 +38,10 @@ class KlipyHttpClient {
         'timeout': timeout.inMicroseconds,
       });
     } on TimeoutException {
-      throw TenorNetworkException();
+      throw KlipyNetworkException();
     } on http.ClientException catch (e) {
       if (e.runtimeType.toString() == '_ClientSocketException') {
-        throw TenorNetworkException();
+        throw KlipyNetworkException();
       }
       rethrow;
     } catch (e) {
@@ -56,11 +53,11 @@ class KlipyHttpClient {
 
   /// Shared functionality between Search and Featured endpoints.
   Future<KlipyResponse?> getGifs(
-    TenorEndpoint endPoint,
+    KlipyEndpoint endPoint,
     Duration timeout,
     String parameters, {
     int limit = 1,
-    TenorAspectRatioRange? aspectRatioRange,
+    KlipyAspectRatioRange? aspectRatioRange,
     List<String>? mediaFilter,
     String? pos,
     bool sticker = false,
@@ -75,7 +72,7 @@ class KlipyHttpClient {
     }
     // TODO this is currently broken in the Klipy API
     // if (random) {
-    //   path += '&random=$random';
+    // path += '&random=$random';
     // }
     if (mediaFilter != null) {
       path += '&media_filter=${mediaFilter.join(',')}';

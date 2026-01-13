@@ -1,14 +1,14 @@
-class TenorApiException implements Exception {
+class KlipyApiException implements Exception {
   int code;
   String? message;
 
-  TenorApiException({
+  KlipyApiException({
     required this.code,
     this.message,
   });
 
   // coverage:ignore-start
   @override
-  String toString() => "TenorApiException code: $code, message: $message";
+  String toString() => "KlipyApiException code: $code, message: $message";
   // coverage:ignore-end
 }

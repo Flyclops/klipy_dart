@@ -15,9 +15,9 @@ KlipyResponse _$KlipyResponseFromJson(Map<String, dynamic> json) =>
           .map((e) => KlipyResultsObject.fromJson(e as Map<String, dynamic>))
           .toList(),
       aspectRatioRange: $enumDecodeNullable(
-              _$TenorAspectRatioRangeEnumMap, json['aspect_ratio_range']) ??
-          TenorAspectRatioRange.all,
-      endpoint: $enumDecodeNullable(_$TenorEndpointEnumMap, json['endpoint']),
+              _$KlipyAspectRatioRangeEnumMap, json['aspect_ratio_range']) ??
+          KlipyAspectRatioRange.all,
+      endpoint: $enumDecodeNullable(_$KlipyEndpointEnumMap, json['endpoint']),
       mediaFilter: (json['media_filter'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -33,27 +33,27 @@ Map<String, dynamic> _$KlipyResponseToJson(KlipyResponse instance) =>
     <String, dynamic>{
       'results': instance.results.map((e) => e.toJson()).toList(),
       'aspect_ratio_range':
-          _$TenorAspectRatioRangeEnumMap[instance.aspectRatioRange]!,
-      'endpoint': _$TenorEndpointEnumMap[instance.endpoint],
+          _$KlipyAspectRatioRangeEnumMap[instance.aspectRatioRange]!,
+      'endpoint': _$KlipyEndpointEnumMap[instance.endpoint],
       'media_filter': instance.mediaFilter,
       'next': instance.next,
       'parameters': instance.parameters,
       'timeout': instance.timeout.inMicroseconds,
     };
 
-const _$TenorAspectRatioRangeEnumMap = {
-  TenorAspectRatioRange.all: 'all',
-  TenorAspectRatioRange.wide: 'wide',
-  TenorAspectRatioRange.standard: 'standard',
+const _$KlipyAspectRatioRangeEnumMap = {
+  KlipyAspectRatioRange.all: 'all',
+  KlipyAspectRatioRange.wide: 'wide',
+  KlipyAspectRatioRange.standard: 'standard',
 };
 
-const _$TenorEndpointEnumMap = {
-  TenorEndpoint.autocomplete: 'autocomplete',
-  TenorEndpoint.categories: 'categories',
-  TenorEndpoint.featured: 'featured',
-  TenorEndpoint.posts: 'posts',
-  TenorEndpoint.registershare: 'registershare',
-  TenorEndpoint.search: 'search',
-  TenorEndpoint.search_suggestions: 'search_suggestions',
-  TenorEndpoint.trending_terms: 'trending_terms',
+const _$KlipyEndpointEnumMap = {
+  KlipyEndpoint.autocomplete: 'autocomplete',
+  KlipyEndpoint.categories: 'categories',
+  KlipyEndpoint.featured: 'featured',
+  KlipyEndpoint.posts: 'posts',
+  KlipyEndpoint.registershare: 'registershare',
+  KlipyEndpoint.search: 'search',
+  KlipyEndpoint.search_suggestions: 'search_suggestions',
+  KlipyEndpoint.trending_terms: 'trending_terms',
 };

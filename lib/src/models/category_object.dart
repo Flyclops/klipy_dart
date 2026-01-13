@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'category_object.g.dart';
 
-/// Based on [category object](https://docs.klipy.com/migrate-from-tenor/response-objects/category-object) from the Klipy API.
+/// Based on [category object](https://docs.klipy.com/migrate-from-tenor/response-objects/category-object) from the KLIPY API.
 @JsonSerializable()
 class KlipyCategoryObject {
   static const _encoder = JsonEncoder.withIndent('  ');

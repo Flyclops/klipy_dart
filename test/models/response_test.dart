@@ -5,8 +5,8 @@ import 'package:mocktail/mocktail.dart';
 import '../mocks/mocks.dart';
 
 void main() {
-  final testAspectRatioRange = TenorAspectRatioRange.standard;
-  final testEndpoint = TenorEndpoint.categories;
+  final testAspectRatioRange = KlipyAspectRatioRange.standard;
+  final testEndpoint = KlipyEndpoint.categories;
   final testMediaFilter = [KlipyMediaFormat.gif];
   final testNext = '123456';
   final testParameters = 'apiKey=1234&country=US&locale=en_US';

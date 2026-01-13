@@ -50,16 +50,16 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   /// In this function we will fetch data from every endpoint available
-  /// in the Tenor API and store it in the state so we can display it.
+  /// in the KLIPY API and store it in the state so we can display it.
   void getData() async {
-    // replace apiKey with an api key provided by Tenor > https://developers.google.com/tenor/guides/quickstart
-    final String apiKey = FlutterConfig.get('TENOR_API_KEY');
-    var tenorClient = Tenor(apiKey: apiKey);
+    // replace apiKey with an api key provided by KLIPY > https://docs.klipy.com/getting-started
+    final String apiKey = FlutterConfig.get('KLIPY_API_KEY');
+    var klipyClient = KlipyClient(apiKey: apiKey);
 
     ///
     /// Search GIFs for "domino" keyword
     ///
-    final searchResponse = await tenorClient.search('domino', limit: 5);
+    final searchResponse = await klipyClient.search('domino', limit: 5);
     if (searchResponse?.results.isNotEmpty ?? false) {
       setState(() {
         searchResults = searchResponse!.results;
@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
     /// Random GIF for "domino"
     ///
     final randomResponse =
-        await tenorClient.search('domino', limit: 1, random: true);
+        await klipyClient.search('domino', limit: 1, random: true);
     if (randomResponse?.results.isNotEmpty ?? false) {
       setState(() {
         randomGif = randomResponse!.results.first;
@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ///
     /// Fetch Featured GIFs
     ///
-    final featuredResponse = await tenorClient.featured(limit: 5);
+    final featuredResponse = await klipyClient.featured(limit: 5);
     if (featuredResponse?.results.isNotEmpty ?? false) {
       setState(() {
         featuredResults = featuredResponse!.results;
@@ -108,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ///
     /// Posts - Fetch GIFs by ID
     ///
-    var postsResponse = await tenorClient.posts(ids: ['2525964843568523']);
+    var postsResponse = await klipyClient.posts(ids: ['2525964843568523']);
     setState(() {
       postsResults = postsResponse;
     });
@@ -116,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ///
     /// Featured Categories
     ///
-    final categoryResponse = await tenorClient.categories();
+    final categoryResponse = await klipyClient.categories();
     setState(() {
       categoryResults = categoryResponse;
     });
@@ -124,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ///
     /// Autocomplete for "pro"
     ///
-    var autocompleteResponse = await tenorClient.autocomplete('pro', limit: 10);
+    var autocompleteResponse = await klipyClient.autocomplete('pro', limit: 10);
     setState(() {
       autocompleteResults = autocompleteResponse;
     });
@@ -133,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
     /// Trending Search Terms
     ///
     var trendingSearchTermsResponse =
-        await tenorClient.trendingSearchTerms(limit: 10);
+        await klipyClient.trendingSearchTerms(limit: 10);
     setState(() {
       trendingSearchTermsResults = trendingSearchTermsResponse;
     });
@@ -142,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
     /// Search Suggestions for "laugh"
     ///
     var searchSuggestionsResponse =
-        await tenorClient.searchSuggestions('laugh', limit: 10);
+        await klipyClient.searchSuggestions('laugh', limit: 10);
     setState(() {
       searchSuggestionsResults = searchSuggestionsResponse;
     });

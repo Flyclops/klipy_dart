@@ -1,1 +1,1 @@
-class TenorNetworkException implements Exception {}
+class KlipyNetworkException implements Exception {}
