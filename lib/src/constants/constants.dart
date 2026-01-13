@@ -4,4 +4,4 @@ export 'content_filter.dart';
 export 'endpoint.dart';
 export 'media_format.dart';
 
-const tenorApiUrl = 'https://tenor.googleapis.com/v2/';
+const tenorApiUrl = 'https://api.klipy.com/v2/';

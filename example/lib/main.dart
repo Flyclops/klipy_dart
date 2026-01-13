@@ -16,11 +16,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Tenor Dart Example',
+      title: 'Klipy Dart Example',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Tenor Dart Example'),
+      home: const MyHomePage(title: 'Klipy Dart Example'),
     );
   }
 }
@@ -54,12 +54,12 @@ class _MyHomePageState extends State<MyHomePage> {
   void getData() async {
     // replace apiKey with an api key provided by Tenor > https://developers.google.com/tenor/guides/quickstart
     final String apiKey = FlutterConfig.get('TENOR_API_KEY');
-    var tenorClient = Tenor(apiKey: apiKey, clientKey: 'tenor-dart-example');
+    var tenorClient = Tenor(apiKey: apiKey);
 
     ///
     /// Search GIFs for "domino" keyword
     ///
-    final searchResponse = await tenorClient.search('domino', limit: 5);
+    final searchResponse = await tenorClient.search('domino game', limit: 5);
     if (searchResponse?.results.isNotEmpty ?? false) {
       setState(() {
         searchResults = searchResponse!.results;
@@ -108,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ///
     /// Posts - Fetch GIFs by ID
     ///
-    var postsResponse = await tenorClient.posts(ids: ['3526696', '25055384']);
+    var postsResponse = await tenorClient.posts(ids: ['2525964843568523']);
     setState(() {
       postsResults = postsResponse;
     });
@@ -212,7 +212,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 const SizedBox(height: 16),
                 // Display posts results
                 const Text(
-                  'Posts (3526696 & 25055384)',
+                  'Posts (2525964843568523)',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

@@ -1,4 +1,4 @@
-# Tenor Dart
+# Klipy Dart
 
 <p align="center">
   <a href="https://pub.dartlang.org/packages/tenor_dart"><img src="https://img.shields.io/pub/v/tenor_dart.svg" alt="Tenor Dart Pub Package" /></a>
@@ -8,7 +8,7 @@
   <a href="https://github.com/Flyclops/tenor_dart/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-BSD_3--Clause-blue.svg" alt="License BSD 3-Clause" /></a>
 </p>
 
-This package integrates [Tenor GIF search](https://tenor.com/) into [Dart](https://dart.dev/) by utilizing the [http](https://pub.dev/packages/http) package to communicate directly with the [Tenor API V2](https://developers.google.com/tenor/guides/quickstart).
+This package integrates [Klipy GIF search](https://klipy.com) into [Dart](https://dart.dev/) by utilizing the [http](https://pub.dev/packages/http) package to communicate directly with the [Klipy API](https://docs.klipy.com/getting-started). We are currently using the [migration from Tenor](https://docs.klipy.com/migrate-from-tenor) option but plan to build this package out to be feature completed with the Klipy API. 
 
 Currently supported endpoints include: [search](https://developers.google.com/tenor/guides/endpoints#search), [featured](https://developers.google.com/tenor/guides/endpoints#featured), [categories](https://developers.google.com/tenor/guides/endpoints#categories), [search suggestions](https://developers.google.com/tenor/guides/endpoints#search-suggestions), [autocomplete](https://developers.google.com/tenor/guides/endpoints#autocomplete), [trending search terms](https://developers.google.com/tenor/guides/endpoints#trending-search), [register share](https://developers.google.com/tenor/guides/endpoints#register-share) and [posts](https://developers.google.com/tenor/guides/endpoints#posts).
 

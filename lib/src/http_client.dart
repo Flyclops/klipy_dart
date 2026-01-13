@@ -20,6 +20,7 @@ class TenorHttpClient {
 // https://developers.google.com/tenor/guides/response-objects-and-errors
   Future<Map<String, dynamic>> request(String url, Duration timeout) async {
     try {
+      print(tenorApiUrl + url);
       final response =
           await _client.get(Uri.parse(tenorApiUrl + url)).timeout(timeout);
       // get json
@@ -28,6 +29,7 @@ class TenorHttpClient {
       // if an error is present, throw it
       if (json['error'] != null ||
           (response.statusCode != 200 && response.statusCode != 202)) {
+        print(response.body);
         throw TenorApiException(
           code: response.statusCode,
           message: json['error']?['message'],
@@ -47,6 +49,7 @@ class TenorHttpClient {
       }
       rethrow;
     } catch (e) {
+      print(e);
       // let the consumer handle it
       rethrow;
     }
@@ -72,9 +75,10 @@ class TenorHttpClient {
     if (sticker) {
       path += '&searchfilter=sticker';
     }
-    if (random) {
-      path += '&random=true';
-    }
+    // TODO this is currently broken in the Klipy API
+    // if (random) {
+    //   path += '&random=$random';
+    // }
     if (contentFilter != null) {
       path += '&contentfilter=${contentFilter.name}';
     }

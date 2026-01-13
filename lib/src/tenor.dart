@@ -10,15 +10,6 @@ class Tenor {
   /// Your API key provided by [Tenor](https://developers.google.com/tenor/guides/quickstart).
   final String apiKey;
 
-  /// A client-specified string that represents the integration.
-  ///
-  /// The client key lets you use the same API key across different integrations but still be able to differentiate them.
-  ///
-  /// For an app integration, use the same `client_key` value for all API calls.
-  ///
-  /// Any client custom behavior is triggered by the pairing of the key and `client_key` parameters.
-  final String? clientKey;
-
   /// Specify the [content safety filter](https://developers.google.com/tenor/guides/content-filtering) level.
   final TenorContentFilter contentFilter;
 
@@ -44,7 +35,6 @@ class Tenor {
 
   const Tenor({
     required this.apiKey,
-    this.clientKey,
     this.contentFilter = TenorContentFilter.off,
     this.country = 'US',
     this.locale = 'en_US',
@@ -73,7 +63,6 @@ class Tenor {
     // setup parameters
     var parameters = ''.withQueryParams({
       'key': apiKey,
-      'client_key': clientKey,
       'country': country,
       'locale': locale,
     });
@@ -108,7 +97,7 @@ class Tenor {
     List<String> mediaFilter = const [TenorMediaFormat.tinyGif],
     String? pos,
     bool sticker = false,
-    bool? random,
+    bool random = false,
   }) async {
     // search can't be empty
     if (search.trim().isEmpty) return null;
@@ -116,10 +105,8 @@ class Tenor {
     var parameters = ''.withQueryParams({
       'key': apiKey,
       'q': search,
-      'client_key': clientKey,
       'country': country,
       'locale': locale,
-      'random': random,
     });
     return await _client.getGifs(
       TenorEndpoint.search,
@@ -131,6 +118,7 @@ class Tenor {
       mediaFilter: mediaFilter,
       pos: pos,
       sticker: sticker,
+      random: random,
     );
   }
 
@@ -154,7 +142,6 @@ class Tenor {
     var path = TenorEndpoint.search_suggestions.name.withQueryParams({
       'key': apiKey,
       'q': search,
-      'client_key': clientKey,
       'country': country,
       'locale': locale,
       'limit': limit.clamp(1, 50),
@@ -183,7 +170,6 @@ class Tenor {
     // setup path
     var path = TenorEndpoint.trending_terms.name.withQueryParams({
       'key': apiKey,
-      'client_key': clientKey,
       'country': country,
       'locale': locale,
       'limit': limit.clamp(1, 50),
@@ -218,7 +204,6 @@ class Tenor {
     var path = TenorEndpoint.autocomplete.name.withQueryParams({
       'key': apiKey,
       'q': search,
-      'client_key': clientKey,
       'country': country,
       'locale': locale,
       'limit': limit.clamp(1, 50),
@@ -249,7 +234,6 @@ class Tenor {
     // setup path
     var path = TenorEndpoint.categories.name.withQueryParams({
       'key': apiKey,
-      'client_key': clientKey,
       'country': country,
       'locale': locale,
       'type': categoryType.name,
@@ -286,7 +270,6 @@ class Tenor {
     var path = TenorEndpoint.registershare.name.withQueryParams({
       'key': apiKey,
       'id': id,
-      'client_key': clientKey,
       'country': country,
       'locale': locale,
       'q': search,
@@ -315,7 +298,6 @@ class Tenor {
     // setup path
     var path = TenorEndpoint.posts.name.withQueryParams({
       'key': apiKey,
-      'client_key': clientKey,
       'ids': ids.join(','),
       'media_filter': mediaFilter.join(','),
     });
