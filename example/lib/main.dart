@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ///
     /// Search GIFs for "domino" keyword
     ///
-    final searchResponse = await klipyClient.search('domino game', limit: 5);
+    final searchResponse = await klipyClient.search('domino', limit: 5);
     if (searchResponse?.results.isNotEmpty ?? false) {
       setState(() {
         searchResults = searchResponse!.results;
