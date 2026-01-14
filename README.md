@@ -27,7 +27,7 @@ Currently supported endpoints include: [search](https://docs.klipy.com/migrate-f
 2. Add a [new platform](https://partner.klipy.com/api-keys)
 3. Click `Create Key`
 4. Copy the generated API key
-5. Provide this API key as a parameter to `Tenor(apiKey: 'YOUR_API_KEY')`
+5. Provide this API key as a parameter to `KlipyClient(apiKey: 'YOUR_API_KEY')`
 
 ## Usage
 
@@ -66,7 +66,7 @@ Here is how you can get 20 of the latest [featured](https://docs.klipy.com/migra
 ```
 final klipyClient = KlipyClient(apiKey: 'YOUR_API_KEY');
 final KlipyResponse? response = await klipyClient.featured(limit: 20);
-final List<KlipyResult>? gifs = response?.results;
+final List<KlipyResultObject>? gifs = response?.results;
 print(gifs?.first.media.tinygif?.url);
 ```
 
