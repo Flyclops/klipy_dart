@@ -18,7 +18,7 @@ void main() {
       'https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/18/ce/u2T4lKAV.gif';
   final testSource = 'Emojis';
 
-  group('KlipyResultsObject >', () {
+  group('KlipyResultObject >', () {
     test('.fromJson()', () {
       final json = {
         'bg_color': testBgColor,
@@ -35,7 +35,7 @@ void main() {
         'url': testUrl,
         'source': testSource,
       };
-      final result = KlipyResultsObject.fromJson(json);
+      final result = KlipyResultObject.fromJson(json);
       expect(result.bgColor, testBgColor);
       expect(result.contentDescription, testContentDescription);
       expect(result.created, testCreated);
@@ -52,7 +52,7 @@ void main() {
     });
 
     test('.toJson()', () {
-      final result = KlipyResultsObject(
+      final result = KlipyResultObject(
         bgColor: testBgColor,
         contentDescription: testContentDescription,
         created: testCreated,
@@ -87,7 +87,7 @@ void main() {
     });
 
     test('.copyWith()', () {
-      final originalResult = KlipyResultsObject(
+      final originalResult = KlipyResultObject(
         bgColor: testBgColor,
         contentDescription: testContentDescription,
         created: testCreated,

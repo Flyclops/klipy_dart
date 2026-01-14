@@ -10,7 +10,7 @@ void main() {
   final testMediaFilter = [KlipyMediaFormat.gif];
   final testNext = '123456';
   final testParameters = 'apiKey=1234&country=US&locale=en_US';
-  final testResults = <KlipyResultsObject>[];
+  final testResults = <KlipyResultObject>[];
   final testDuration = const Duration(seconds: 10);
 
   setUpAll(() {

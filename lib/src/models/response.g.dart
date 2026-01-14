@@ -12,7 +12,7 @@ part of 'response.dart';
 KlipyResponse _$KlipyResponseFromJson(Map<String, dynamic> json) =>
     KlipyResponse(
       results: (json['results'] as List<dynamic>)
-          .map((e) => KlipyResultsObject.fromJson(e as Map<String, dynamic>))
+          .map((e) => KlipyResultObject.fromJson(e as Map<String, dynamic>))
           .toList(),
       aspectRatioRange: $enumDecodeNullable(
               _$KlipyAspectRatioRangeEnumMap, json['aspect_ratio_range']) ??

@@ -3,14 +3,14 @@
 // coverage:ignore-file
 
 
-part of 'results_object.dart';
+part of 'result_object.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-KlipyResultsObject _$KlipyResultsObjectFromJson(Map<String, dynamic> json) =>
-    KlipyResultsObject(
+KlipyResultObject _$KlipyResultObjectFromJson(Map<String, dynamic> json) =>
+    KlipyResultObject(
       contentDescription: json['content_description'] as String,
       created: (json['created'] as num).toDouble(),
       flags:
@@ -33,7 +33,7 @@ KlipyResultsObject _$KlipyResultsObjectFromJson(Map<String, dynamic> json) =>
       source: json['source'] as String?,
     );
 
-Map<String, dynamic> _$KlipyResultsObjectToJson(KlipyResultsObject instance) =>
+Map<String, dynamic> _$KlipyResultObjectToJson(KlipyResultObject instance) =>
     <String, dynamic>{
       'created': instance.created,
       'hasaudio': instance.hasAudio,

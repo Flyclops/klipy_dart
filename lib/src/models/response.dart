@@ -13,7 +13,7 @@ class KlipyResponse {
   static const _encoder = JsonEncoder.withIndent('  ');
 
   @JsonKey(name: 'results')
-  final List<KlipyResultsObject> results;
+  final List<KlipyResultObject> results;
 
   @JsonKey(name: 'aspect_ratio_range')
   final KlipyAspectRatioRange aspectRatioRange;

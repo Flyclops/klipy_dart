@@ -495,7 +495,7 @@ void main() {
         ).thenAnswer((_) async {
           return {
             'results': [
-              KlipyResultsObject(
+              KlipyResultObject(
                 created: DateTime.now().millisecondsSinceEpoch.toDouble(),
                 hasAudio: false,
                 id: '1234',

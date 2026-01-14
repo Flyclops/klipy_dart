@@ -2,7 +2,7 @@ import 'package:klipy_dart/src/constants/constants.dart';
 import 'package:klipy_dart/src/http_client.dart';
 import 'package:klipy_dart/src/models/category_object.dart';
 import 'package:klipy_dart/src/models/response.dart';
-import 'package:klipy_dart/src/models/results_object.dart';
+import 'package:klipy_dart/src/models/result_object.dart';
 import 'package:klipy_dart/src/utilities/utilities.dart';
 
 /// A client to interact with the [KLIPY API](https://docs.klipy.com/migrate-from-tenor).
@@ -276,9 +276,9 @@ class KlipyClient {
   ///
   ///```dart
   /// var klipyClient = KlipyClient(apiKey: 'YOUR_KEY');
-  /// List<KlipyResultsObject> posts = await klipyClient.posts(ids: ['3526696', '25055384']);
+  /// List<KlipyResultObject> posts = await klipyClient.posts(ids: ['3526696', '25055384']);
   ///```
-  Future<List<KlipyResultsObject>> posts({
+  Future<List<KlipyResultObject>> posts({
     required List<String> ids,
     List<String> mediaFilter = const [KlipyMediaFormat.tinyGif],
   }) async {
@@ -291,10 +291,10 @@ class KlipyClient {
     // ask for data
     var data = await _client.request(path, networkTimeout);
     // form list of categories
-    var list = <KlipyResultsObject>[];
+    var list = <KlipyResultObject>[];
     if (data['results'] != null) {
       data['results'].forEach((post) {
-        list.add(KlipyResultsObject.fromJson(post));
+        list.add(KlipyResultObject.fromJson(post));
       });
     }
     return list;

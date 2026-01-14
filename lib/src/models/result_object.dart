@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:klipy_dart/src/models/media_formats.dart';
 
-part 'results_object.g.dart';
+part 'result_object.g.dart';
 
 /// Based on [response object](https://docs.klipy.com/migrate-from-tenor/response-objects/response-object) from the Klipy API.
 @JsonSerializable(explicitToJson: true)
-class KlipyResultsObject {
+class KlipyResultObject {
   static const _encoder = JsonEncoder.withIndent('  ');
 
   /// A Unix timestamp that represents when this post was created.
@@ -62,7 +62,7 @@ class KlipyResultsObject {
   @JsonKey(name: 'source')
   final String? source;
 
-  KlipyResultsObject({
+  KlipyResultObject({
     required this.contentDescription,
     required this.created,
     required this.flags,
@@ -78,12 +78,12 @@ class KlipyResultsObject {
     this.source,
   });
 
-  factory KlipyResultsObject.fromJson(Map<String, dynamic> json) =>
-      _$KlipyResultsObjectFromJson(json);
+  factory KlipyResultObject.fromJson(Map<String, dynamic> json) =>
+      _$KlipyResultObjectFromJson(json);
 
-  Map<String, dynamic> toJson() => _$KlipyResultsObjectToJson(this);
+  Map<String, dynamic> toJson() => _$KlipyResultObjectToJson(this);
 
-  KlipyResultsObject copyWith({
+  KlipyResultObject copyWith({
     double? created,
     bool? hasAudio,
     String? id,
@@ -98,7 +98,7 @@ class KlipyResultsObject {
     String? url,
     String? source,
   }) {
-    return KlipyResultsObject(
+    return KlipyResultObject(
       created: created ?? this.created,
       hasAudio: hasAudio ?? this.hasAudio,
       id: id ?? this.id,

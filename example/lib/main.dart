@@ -34,14 +34,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<KlipyResultsObject> searchResults = [];
-  List<KlipyResultsObject> featuredResults = [];
-  List<KlipyResultsObject> postsResults = [];
+  List<KlipyResultObject> searchResults = [];
+  List<KlipyResultObject> featuredResults = [];
+  List<KlipyResultObject> postsResults = [];
   List<KlipyCategoryObject?> categoryResults = [];
   List<String?> autocompleteResults = [];
   List<String?> trendingSearchTermsResults = [];
   List<String?> searchSuggestionsResults = [];
-  KlipyResultsObject? randomGif;
+  KlipyResultObject? randomGif;
 
   @override
   void initState() {
