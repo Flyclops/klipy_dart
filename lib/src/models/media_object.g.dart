@@ -2,24 +2,25 @@
 
 // coverage:ignore-file
 
+
 part of 'media_object.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-TenorMediaObject _$TenorMediaObjectFromJson(Map<String, dynamic> json) =>
-    TenorMediaObject(
+KlipyMediaObject _$KlipyMediaObjectFromJson(Map<String, dynamic> json) =>
+    KlipyMediaObject(
       url: json['url'] as String,
-      dimensions: TenorMediaObject.dimensionsfromJson(json['dims'] as List),
+      dimensions: KlipyMediaObject.dimensionsfromJson(json['dims'] as List),
       duration: (json['duration'] as num?)?.toDouble() ?? 0,
       size: (json['size'] as num).toInt(),
     );
 
-Map<String, dynamic> _$TenorMediaObjectToJson(TenorMediaObject instance) =>
+Map<String, dynamic> _$KlipyMediaObjectToJson(KlipyMediaObject instance) =>
     <String, dynamic>{
       'url': instance.url,
-      'dims': TenorMediaObject.dimensionsToJson(instance.dimensions),
+      'dims': KlipyMediaObject.dimensionsToJson(instance.dimensions),
       'duration': instance.duration,
       'size': instance.size,
     };

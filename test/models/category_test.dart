@@ -1,14 +1,14 @@
-import 'package:tenor_dart/tenor_dart.dart';
+import 'package:klipy_dart/klipy_dart.dart';
 import 'package:test/test.dart';
 
 void main() {
   final testSearchTerm = 'dominoes';
   final testPath = '?apiKey=1234&country=US&locale=en_US';
   final testImage =
-      'https://media1.tenor.com/m/VWnlUqZcVMsAAAAC/dominos-falling.gif';
+      'https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/18/ce/u2T4lKAV.gif';
   final testName = 'Dominos Falling GIF';
 
-  group('TenorCategory >', () {
+  group('KlipyCategory >', () {
     test('.fromJson()', () {
       final json = {
         'image': testImage,
@@ -16,7 +16,7 @@ void main() {
         'path': testPath,
         'searchterm': testSearchTerm,
       };
-      final category = TenorCategory.fromJson(json);
+      final category = KlipyCategoryObject.fromJson(json);
       expect(category.image, testImage);
       expect(category.name, testName);
       expect(category.path, testPath);
@@ -24,7 +24,7 @@ void main() {
     });
 
     test('.toJson()', () {
-      final category = TenorCategory(
+      final category = KlipyCategoryObject(
         image: testImage,
         name: testName,
         path: testPath,

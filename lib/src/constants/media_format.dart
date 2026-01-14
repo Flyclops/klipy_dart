@@ -1,7 +1,10 @@
-/// A class contianing all the media formats supported by Tenor API.
+/// The KLIPY API provides five base media formats in various sizes:
+///  - GIF: Plays on a continuous loop.
+///  - MP4 & WebM: Plays the clip once (except loopedmp4 , which repeats several times).
+///  - Transparent WebP & Transparent GIF: Exclusively for sticker content; these are not available in GIF search results.
 ///
-/// https://developers.google.com/tenor/guides/response-objects-and-errors#content-formats
-class TenorMediaFormat {
+/// https://docs.klipy.com/migrate-from-tenor/response-objects/content-formats
+class KlipyMediaFormat {
   static const String preview = "preview";
   static const String gif = "gif";
   static const String mediumGif = "mediumgif";

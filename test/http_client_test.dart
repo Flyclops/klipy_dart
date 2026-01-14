@@ -1,6 +1,6 @@
 import 'package:http/http.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tenor_dart/tenor_dart.dart';
+import 'package:klipy_dart/klipy_dart.dart';
 import 'package:test/test.dart';
 
 import 'mocks/mocks.dart';
@@ -8,9 +8,9 @@ import 'mocks/mocks.dart';
 class _ClientSocketException extends Mock implements ClientException {}
 
 void main() {
-  group('TenorHttpClient >', () {
+  group('KlipyHttpClient >', () {
     final mockHttpClient = MockHttpClient();
-    final tenorClient = TenorHttpClient(mockHttpClient);
+    final klipyClient = KlipyHttpClient(mockHttpClient);
 
     setUpAll(() {
       registerFallbackValue(Uri());
@@ -26,7 +26,7 @@ void main() {
           return Response('{"value":true}', 200);
         });
 
-        final response = await tenorClient.request(
+        final response = await klipyClient.request(
           'a-fake-url',
           Duration(seconds: 2),
         );
@@ -36,35 +36,35 @@ void main() {
         expect(response['value'], true);
       });
 
-      test('failure - TenorApiException', () async {
+      test('failure - KlipyApiException', () async {
         when(() => mockHttpClient.get(any())).thenAnswer((_) async {
           return Response('{"value":true}', 404);
         });
 
-        final response = tenorClient.request(
+        final response = klipyClient.request(
           'a-fake-url',
           Duration(seconds: 2),
         );
 
         verify(() => mockHttpClient.get(any())).called(1);
 
-        expectLater(response, throwsA(isA<TenorApiException>()));
+        expectLater(response, throwsA(isA<KlipyApiException>()));
       });
 
-      test('failure - TenorNetworkException', () async {
+      test('failure - KlipyNetworkException', () async {
         when(() => mockHttpClient.get(any())).thenAnswer((_) async {
           await Future.delayed(Duration(seconds: 2));
           return Response('{"value":true}', 404);
         });
 
-        final response = tenorClient.request(
+        final response = klipyClient.request(
           'a-fake-url',
           Duration(seconds: 1),
         );
 
         verify(() => mockHttpClient.get(any())).called(1);
 
-        expectLater(response, throwsA(isA<TenorNetworkException>()));
+        expectLater(response, throwsA(isA<KlipyNetworkException>()));
       });
 
       test('failure - ClientException', () async {
@@ -72,14 +72,14 @@ void main() {
           throw _ClientSocketException();
         });
 
-        final response = tenorClient.request(
+        final response = klipyClient.request(
           'a-fake-url',
           Duration(seconds: 1),
         );
 
         verify(() => mockHttpClient.get(any())).called(1);
 
-        expectLater(response, throwsA(isA<TenorNetworkException>()));
+        expectLater(response, throwsA(isA<KlipyNetworkException>()));
       });
     });
     group('.getGifs() >', () {
@@ -88,8 +88,8 @@ void main() {
           return Response('{"results":[]}', 200);
         });
 
-        final response = await tenorClient.getGifs(
-          TenorEndpoint.featured,
+        final response = await klipyClient.getGifs(
+          KlipyEndpoint.featured,
           Duration(seconds: 2),
           '',
         );
@@ -115,13 +115,12 @@ void main() {
           );
         });
 
-        final response = await tenorClient.getGifs(
-          TenorEndpoint.featured,
+        final response = await klipyClient.getGifs(
+          KlipyEndpoint.featured,
           Duration(seconds: 2),
           '?key=1234',
-          aspectRatioRange: TenorAspectRatioRange.standard,
-          contentFilter: TenorContentFilter.high,
-          mediaFilter: [TenorMediaFormat.tinyMp4],
+          aspectRatioRange: KlipyAspectRatioRange.standard,
+          mediaFilter: [KlipyMediaFormat.tinyMp4],
           pos: 'abcd',
           random: true,
           sticker: true,
@@ -130,10 +129,9 @@ void main() {
         verify(() => mockHttpClient.get(any())).called(1);
 
         expect(response, isNotNull);
-        expect(response?.aspectRatioRange, TenorAspectRatioRange.standard);
-        expect(response?.contentFilter, TenorContentFilter.high);
-        expect(response?.endpoint, TenorEndpoint.featured);
-        expect(response?.mediaFilter, [TenorMediaFormat.tinyMp4]);
+        expect(response?.aspectRatioRange, KlipyAspectRatioRange.standard);
+        expect(response?.endpoint, KlipyEndpoint.featured);
+        expect(response?.mediaFilter, [KlipyMediaFormat.tinyMp4]);
         expect(response?.next, "efgh");
         expect(response?.parameters, '?key=1234');
         expect(response?.results, []);

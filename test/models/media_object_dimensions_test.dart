@@ -1,17 +1,17 @@
-import 'package:tenor_dart/src/models/media_object_dimensions.dart';
+import 'package:klipy_dart/src/models/media_object_dimensions.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('TenorMediaObjectDimensions >', () {
+  group('KlipyMediaObjectDimensions >', () {
     test('Height, width and aspect ratio should be correct', () {
-      final dimensions = TenorMediaObjectDimensions([220, 400]);
+      final dimensions = KlipyMediaObjectDimensions([220, 400]);
       expect(dimensions.width, 220);
       expect(dimensions.height, 400);
       expect(dimensions.aspectRatio, 220 / 400);
     });
     test('Should error out if dimensions are not 2 in length', () {
       expect(
-        () => TenorMediaObjectDimensions([]),
+        () => KlipyMediaObjectDimensions([]),
         throwsA(isA<ArgumentError>()),
       );
     });
@@ -19,13 +19,13 @@ void main() {
       final json = {
         'dims': [150, 300],
       };
-      final dimensions = TenorMediaObjectDimensions.fromJson(json);
+      final dimensions = KlipyMediaObjectDimensions.fromJson(json);
       expect(dimensions.width, 150);
       expect(dimensions.height, 300);
       expect(dimensions.aspectRatio, 150 / 300);
     });
     test('.toJson()', () {
-      final dimensions = TenorMediaObjectDimensions([300, 600]);
+      final dimensions = KlipyMediaObjectDimensions([300, 600]);
       final json = dimensions.toJson();
 
       expect(json, {

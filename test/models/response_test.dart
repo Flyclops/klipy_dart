@@ -1,17 +1,16 @@
-import 'package:tenor_dart/tenor_dart.dart';
+import 'package:klipy_dart/klipy_dart.dart';
 import 'package:test/test.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../mocks/mocks.dart';
 
 void main() {
-  final testAspectRatioRange = TenorAspectRatioRange.standard;
-  final testContentFilter = TenorContentFilter.high;
-  final testEndpoint = TenorEndpoint.categories;
-  final testMediaFilter = [TenorMediaFormat.gif];
+  final testAspectRatioRange = KlipyAspectRatioRange.standard;
+  final testEndpoint = KlipyEndpoint.categories;
+  final testMediaFilter = [KlipyMediaFormat.gif];
   final testNext = '123456';
   final testParameters = 'apiKey=1234&country=US&locale=en_US';
-  final testResults = <TenorResult>[];
+  final testResults = <KlipyResultObject>[];
   final testDuration = const Duration(seconds: 10);
 
   setUpAll(() {
@@ -20,12 +19,11 @@ void main() {
     registerFallbackValue(testParameters);
   });
 
-  group('TenorResponse >', () {
+  group('KlipyResponse >', () {
     test('.fetchNext()', () {
-      final mockHttpClient = MockTenorHttpClient();
-      final response = TenorResponse(
+      final mockHttpClient = MockKlipyHttpClient();
+      final response = KlipyResponse(
         aspectRatioRange: testAspectRatioRange,
-        contentFilter: testContentFilter,
         endpoint: testEndpoint,
         mediaFilter: testMediaFilter,
         next: testNext,
@@ -41,7 +39,6 @@ void main() {
           any(),
           any(),
           aspectRatioRange: any(named: 'aspectRatioRange'),
-          contentFilter: any(named: 'contentFilter'),
           limit: any(named: 'limit'),
           mediaFilter: any(named: 'mediaFilter'),
           pos: any(named: 'pos'),
@@ -60,7 +57,6 @@ void main() {
           any(),
           any(),
           aspectRatioRange: any(named: 'aspectRatioRange'),
-          contentFilter: any(named: 'contentFilter'),
           limit: any(named: 'limit'),
           mediaFilter: any(named: 'mediaFilter'),
           pos: any(named: 'pos'),
@@ -71,7 +67,6 @@ void main() {
     test('.fromJson()', () {
       final json = {
         'aspect_ratio_range': testAspectRatioRange.name,
-        'content_filter': testContentFilter.name,
         'endpoint': testEndpoint.name,
         'media_filter': testMediaFilter,
         'next': testNext,
@@ -79,9 +74,8 @@ void main() {
         'results': testResults,
         'timeout': testDuration.inMicroseconds,
       };
-      final response = TenorResponse.fromJson(json);
+      final response = KlipyResponse.fromJson(json);
       expect(response.aspectRatioRange, testAspectRatioRange);
-      expect(response.contentFilter, testContentFilter);
       expect(response.endpoint, testEndpoint);
       expect(response.mediaFilter, testMediaFilter);
       expect(response.next, testNext);
@@ -91,9 +85,8 @@ void main() {
     });
 
     test('.toJson()', () {
-      final category = TenorResponse(
+      final category = KlipyResponse(
         aspectRatioRange: testAspectRatioRange,
-        contentFilter: testContentFilter,
         endpoint: testEndpoint,
         mediaFilter: testMediaFilter,
         next: testNext,
@@ -105,7 +98,6 @@ void main() {
 
       expect(json, {
         'aspect_ratio_range': testAspectRatioRange.name,
-        'content_filter': testContentFilter.name,
         'endpoint': testEndpoint.name,
         'media_filter': testMediaFilter,
         'next': testNext,

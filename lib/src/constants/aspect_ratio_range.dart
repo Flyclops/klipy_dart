@@ -1,7 +1,7 @@
-/// Filter the [Response Objects](https://developers.google.com/tenor/guides/response-objects-and-errors#response-object) to only include GIFs with aspect ratios that fit within the selected range.
+/// Filter the results to only include GIFs with aspect ratios that fit within the selected range.
 ///
-/// https://developers.google.com/tenor/guides/endpoints#parameters-search
-enum TenorAspectRatioRange {
+/// https://docs.klipy.com/migrate-from-tenor look for "ar_range"
+enum KlipyAspectRatioRange {
   /// No constraints
   all,
 

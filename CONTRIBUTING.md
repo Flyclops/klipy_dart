@@ -1,4 +1,4 @@
-# Contributing to Tenor Dart
+# Contributing to KLIPY Dart
 
 👍🎉 First off, thanks for taking the time to contribute! 🎉👍
 
@@ -6,7 +6,7 @@ Following these guidelines helps to communicate that you respect the time of the
 
 ## How Can You Contribute?
 
-- Pick up any issue marked with "[good first issue](https://github.com/flyclops/tenor_dart/issues?q=is:open+is:issue+label:%22good+first+issue%22)"
+- Pick up any issue marked with "[good first issue](https://github.com/flyclops/klipy_dart/issues?q=is:open+is:issue+label:%22good+first+issue%22)"
 - Propose any feature, enhancement
 - Report a bug
 - Fix a bug
@@ -30,4 +30,4 @@ Before creating a pull request please:
 
 ## License
 
-By contributing to Tenor Dart, you agree that your contributions will be licensed under its [BSD-3-Clause license](LICENSE).
+By contributing to KLIPY Dart, you agree that your contributions will be licensed under its [BSD-3-Clause license](LICENSE).

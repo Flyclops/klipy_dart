@@ -1,4 +1,4 @@
-import 'package:tenor_dart/src/utilities/utilities.dart';
+import 'package:klipy_dart/src/utilities/utilities.dart';
 import 'package:test/test.dart';
 
 void main() {
