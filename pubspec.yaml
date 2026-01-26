@@ -1,5 +1,5 @@
 name: klipy_dart
-version: 0.0.1
+version: 0.0.2
 description: "A client for interacting with the KLIPY API directly in Dart. Supports all the major endpoints such as featured (trending), search, categories, etc."
 homepage: https://github.com/flyclops
 repository: https://github.com/flyclops/klipy_dart
