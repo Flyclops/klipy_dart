@@ -1,3 +1,8 @@
+# ⚠️ NOT MAINTAINED ⚠️
+After exploring the option of using KLIPY we have decided against it.
+
+If you are interested in taking over this repo and package please do not hesitate to reach out via the issues and we will get it sorted out.
+
 # KLIPY Dart
 
 <p align="center">
@@ -8,7 +13,7 @@
   <a href="https://github.com/Flyclops/klipy_dart/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-BSD_3--Clause-blue.svg" alt="License BSD 3-Clause" /></a>
 </p>
 
-This package integrates [KLIPY GIF search](https://klipy.com) into [Dart](https://dart.dev/) by utilizing the [http](https://pub.dev/packages/http) package to communicate directly with the [KLIPY API](https://docs.klipy.com/getting-started). We are currently using the [migration from Tenor](https://docs.klipy.com/migrate-from-tenor) option but plan to build this package out to be feature complete with the KLIPY API. 
+This package integrates [KLIPY GIF search](https://klipy.com) into [Dart](https://dart.dev/) by utilizing the [http](https://pub.dev/packages/http) package to communicate directly with the [KLIPY API](https://docs.klipy.com/getting-started). It is currently using the [migration from Tenor](https://docs.klipy.com/migrate-from-tenor) option.
 
 Currently supported endpoints include: [search](https://docs.klipy.com/migrate-from-tenor/search), [featured](https://docs.klipy.com/migrate-from-tenor/features), [categories](https://docs.klipy.com/migrate-from-tenor/categories), [search suggestions](https://docs.klipy.com/migrate-from-tenor/search-suggestions), [autocomplete](https://docs.klipy.com/migrate-from-tenor/autocomplete), [trending search terms](https://docs.klipy.com/migrate-from-tenor/trending-search-terms), [register share](https://docs.klipy.com/migrate-from-tenor/register-share) and [posts](https://docs.klipy.com/migrate-from-tenor/posts).
 
@@ -73,21 +78,6 @@ print(gifs?.first.media.tinygif?.url);
 ## Looking for a UI?
 
 If you're seeking a ready-made UI solution, check out [KLIPY Flutter](https://github.com/Flyclops/klipy_flutter), which was designed based on the [Tenor SDK](https://developers.google.com/tenor/guides/quickstart#launch-search) [guidelines](https://developers.google.com/tenor/guides/attribution).
-
-You can see a live example of it in our mobile game [Domino!](https://flyclops.com/games/domino.html) <sup>It's in chat.</sup>
-
-## Sponsors
-
-<table>
-  <tr>
-    <td><p align="center"><a href="https://flyclops.com/"><img src="https://raw.githubusercontent.com/Flyclops/klipy_dart/main/example/assets/flyclops_logo_github.png" alt="Flyclops"/></a></p></td>
-    <td><p align="center"><a href="https://flyclops.com/games/domino.html"><img src="https://raw.githubusercontent.com/Flyclops/klipy_dart/main/example/assets/domino_logo_github.png" alt="Domino!"/></a></p></td>
-  </tr>
-  <tr>
-    <td><p align="center"><a href="https://flyclops.com/">Flyclops</a> is a independent mobile games studio specializing in casual multi-player games, both asynchronous turn-based, and real-time. Flyclops’s games have been played by millions across&nbsp;the&nbsp;globe.</p></td>
-    <td><p align="center"><a href="https://flyclops.com/games/domino.html">Domino!</a> is super addictive, fast-paced, multiplayer dominoes done right for <a href="https://j.mp/domino_FREE">iOS</a> and <a href="https://flycl.ps/domino_android">Android</a>. This easy-to-learn but impossible-to-master strategy game is beautifully designed and endlessly&nbsp;entertaining!</p></td>
-  </tr>
-</table>
 
 ## What's next?
 
